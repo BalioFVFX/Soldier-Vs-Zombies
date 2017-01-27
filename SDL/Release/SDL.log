@@ -1,0 +1,29 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (SDL TEST.vcxproj, Soldier Vs Zombies 2.2.vcxproj, Soldiers Vs Zombies 2.0.vcxproj, Soldiers Vs Zombies 2.2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Collision.cpp
+  Enviroment.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\sdl\Player.h(107): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Menu.cpp
+  Player.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\sdl\Player.h(107): warning C4305: 'initializing': truncation from 'double' to 'float'
+Player.cpp(119): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(121): warning C4552: '-': operator has no effect; expected operator with side-effect
+Player.cpp(134): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(147): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(154): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(177): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+Player.cpp(181): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+Player.cpp(223): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(245): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(288): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(330): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+  Source.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\sdl\Player.h(107): warning C4305: 'initializing': truncation from 'double' to 'float'
+Source.cpp(1234): warning C4018: '>': signed/unsigned mismatch
+Source.cpp(104): warning C4390: ';': empty controlled statement found; is this the intent?
+  Generating code
+  551 of 562 functions (98.0%) were compiled, the rest were copied from previous compilation.
+    4 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Release\Soldier Vs Zombies 2.9.exe
+  SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Release\Soldier Vs Zombies 2.9.pdb (Full PDB)

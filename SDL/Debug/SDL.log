@@ -1,0 +1,7 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SDL TEST.vcxproj, Soldier Vs Zombies 2.2.vcxproj, Soldiers vs Zombies 1.9.vcxproj, Soldiers Vs Zombies 2.0.vcxproj, Soldiers Vs Zombies 2.2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Source.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\sdl test\sdl\player.h(107): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\baliofvfx\documents\visual studio 2015\projects\sdl test\sdl\source.cpp(1234): warning C4018: '>': signed/unsigned mismatch
+c:\users\baliofvfx\documents\visual studio 2015\projects\sdl test\sdl\source.cpp(104): warning C4390: ';': empty controlled statement found; is this the intent?
+  SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\SDL TEST\Debug\Soldier Vs Zombies 2.9.exe
+  SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\SDL TEST\Debug\Soldier Vs Zombies 2.9.pdb (Full PDB)

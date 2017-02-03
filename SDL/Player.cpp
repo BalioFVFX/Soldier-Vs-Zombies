@@ -72,7 +72,7 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 	frameWidth = positionRect.w = cropRect.w;
 	frameHeight = positionRect.h = cropRect.h;
 
-
+	
 
 	isActive = false;
 	isSecondActive = false;
@@ -89,7 +89,34 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 		keys[8] = SDL_SCANCODE_SPACE;
 	 
 
+
 	moveSpeed = 200.0f;
+
+	
+	text = TTF_OpenFont("batmfa__.ttf", 24);
+	
+	
+	bulletsdrawStream << bullets;
+
+	BulletDrawSurface = TTF_RenderText_Solid(text, bulletsdrawStream.str().c_str(), White);
+	BulletDrawTexture = SDL_CreateTextureFromSurface(renderTarget, BulletDrawSurface);
+
+	BulletDrawTextSurface = TTF_RenderText_Solid(text, "Bullets ::", White);
+	BulletDrawTextTexture = SDL_CreateTextureFromSurface(renderTarget, BulletDrawTextSurface);
+
+	bulletsRect.x = 140;
+	bulletsRect.y = 70;
+	bulletsRect.w = 100;
+	bulletsRect.h = 40;
+
+
+	bulletsTextRect.x = 20;
+	bulletsTextRect.y = 70;
+	bulletsTextRect.w = 100;
+	bulletsTextRect.h = 40;
+
+
+
 }
 
 Player::~Player()
@@ -228,6 +255,23 @@ bool Player::IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev
 	return true;
 }
 
+void Player::DrawText(SDL_Renderer * renderTarget)
+{
+	SDL_RenderCopy(renderTarget, BulletDrawTexture, NULL, &bulletsRect);
+	SDL_RenderCopy(renderTarget, BulletDrawTextTexture, NULL, &bulletsTextRect);
+
+}
+
+void Player::UpdateText(SDL_Renderer * renderTarget, SDL_Event ev)
+{
+
+		bulletsdrawStream.str("");
+		bulletsdrawStream << bullets;
+		
+	BulletDrawSurface = TTF_RenderText_Solid(text, bulletsdrawStream.str().c_str(), White);
+	BulletDrawTexture = SDL_CreateTextureFromSurface(renderTarget, BulletDrawSurface);
+}
+
 
 
 void Player::UpdateZombie(float delta, const Uint8 * keystate, SDL_Event ev, Player &p)
@@ -335,7 +379,6 @@ void Player::UpdateThirdZombie(float delta, const Uint8 * keystate, SDL_Event ev
 			isActive = false;
 		}
 	}
-
 	if (isActive)
 	{
 		frameCounter += delta;
@@ -408,7 +451,7 @@ void Player::updateWin(float delta, const Uint8 * keystate, SDL_Event ev, Player
 void Player::DrawBullet(SDL_Renderer *renderBullet, Player &p, const Uint8 *keystate)
 {
 	
-	if (fired == false)
+	if (fired == false && reloading == false)
 	{
 		
 		if (keystate[keys[5]])
@@ -416,10 +459,29 @@ void Player::DrawBullet(SDL_Renderer *renderBullet, Player &p, const Uint8 *keys
 			bullet_rect.x = p.positionRect.x;
 			bullet_rect.y = p.positionRect.y;
 			fired = true;
+			std::cout << bullets << std::endl;
+			Mix_PlayChannel(1, fire_bullet, 0);
+			bullets -= 1;
+		}
 
+	}
+	
+	if (bullets == 0)
+	{
+	
+		reloading = true;
+		currentTime = SDL_GetTicks();
+		Mix_PlayChannel(1, reloading_sound, 0);
+		if (currentTime > lastTime + 5000) {
+			lastTime = currentTime;
+			reloading = false;
+			bullets = 15;
+			
 		}
 	}
-		bullet_rect.x += 20;
+
+	
+	bullet_rect.x += 20;
 	
 	
 	SDL_RenderCopy(renderBullet, texture, NULL, &bullet_rect);
@@ -631,6 +693,7 @@ void Player::updateWall(float delta, const Uint8 * keystate, SDL_Event ev, Playe
 		frameCounter = 0;
 		cropRect.x = frameWidth;
 	}
+
 }
 
 void Player::drawExplosionFromZombie(SDL_Renderer * renderTarget, Player &p)

@@ -1,7 +1,39 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SDL TEST.vcxproj, Soldier Vs Zombies 2.2.vcxproj, Soldiers vs Zombies 1.9.vcxproj, Soldiers Vs Zombies 2.0.vcxproj, Soldiers Vs Zombies 2.2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Source.cpp
-c:\users\baliofvfx\documents\visual studio 2015\projects\sdl test\sdl\player.h(107): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\baliofvfx\documents\visual studio 2015\projects\sdl test\sdl\source.cpp(1234): warning C4018: '>': signed/unsigned mismatch
-c:\users\baliofvfx\documents\visual studio 2015\projects\sdl test\sdl\source.cpp(104): warning C4390: ';': empty controlled statement found; is this the intent?
-  SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\SDL TEST\Debug\Soldier Vs Zombies 2.9.exe
-  SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\SDL TEST\Debug\Soldier Vs Zombies 2.9.pdb (Full PDB)
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(112): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(787): error C2039: 'UpdateText': is not a member of 'Player'
+  c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(11): note: see declaration of 'Player'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(1236): warning C4018: '>': signed/unsigned mismatch
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(104): warning C4390: ';': empty controlled statement found; is this the intent?
+  Player.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(112): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(146): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(148): warning C4552: '-': operator has no effect; expected operator with side-effect
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(161): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(174): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(181): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(204): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(208): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(250): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(265): error C2039: 'UpdateText': is not a member of 'Player'
+  c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(11): note: see declaration of 'Player'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(267): error C2065: 'updateTheText': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(267): warning C4805: '==': unsafe mix of type 'unknown-type' and type 'bool' in operation
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(271): error C2065: 'bulletsdrawStream': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(271): error C2228: left of '.str' must have class/struct/union
+  c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(271): note: type is 'unknown-type'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(272): error C2065: 'bulletsdrawStream': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(272): error C2065: 'bullets': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(274): error C2065: 'BulletDrawSurface': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(274): error C2065: 'text': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(274): error C2065: 'bulletsdrawStream': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(274): error C2228: left of '.str' must have class/struct/union
+  c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(274): note: type is 'unknown-type'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(274): error C2228: left of '.c_str' must have class/struct/union
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(274): error C2065: 'White': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(275): error C2065: 'BulletDrawTexture': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(275): error C2065: 'BulletDrawSurface': undeclared identifier
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(292): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(335): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(377): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...

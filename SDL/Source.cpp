@@ -19,7 +19,7 @@ int timesWereHitted = 0;
 bool bricksAlive1st = true;
 bool bricksAlive2nd = false;
 bool bricksAlive3rd = false;
-
+bool updateTheText = false;
 bool isPressed = false;
 bool inMenu = true;
 bool inSettings = false;
@@ -669,6 +669,7 @@ int main(int argc, char** argv)
 			
 			SDL_RenderCopy(renderTarget, PlayerHealthTexture, NULL, &PlayerHealthRect);
 			SDL_RenderCopy(renderTarget, PlayerTextHealthTexture, NULL, &PlayerTextHealthRect);
+			player1.DrawText(renderTarget);
 			
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
 			{
@@ -780,11 +781,12 @@ int main(int argc, char** argv)
 				zombieDrawBulletVer2.DrawBullet4ZombieVer2(renderTarget, zombie3rd, keyState);
 			}
 			
-			if (regularBullet == true && isPaused == false )
+			if (regularBullet == true && isPaused == false)
 			{
 				bullet.DrawBullet(renderTarget, player1, keyState); //Draw bullet	
+				player1.UpdateText(renderTarget, ev);
 			}
-			
+
 			if (laserBullet == true && isPaused == false )
 			{
 				Laser.drawLaser(renderTarget, player1, keyState);
@@ -1274,7 +1276,7 @@ int main(int argc, char** argv)
 
 			if (FireTheBullet == true)
 			{
-				Mix_PlayChannel(1, fire_bullet, 0);
+				//Mix_PlayChannel(1, fire_bullet, 0);
 				FireTheBullet = false;
 				regularBullet = true;
 			}

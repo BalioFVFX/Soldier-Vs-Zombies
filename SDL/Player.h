@@ -2,7 +2,9 @@
 #include<SDL\SDL.h>
 #include <string>
 #include <SDL\SDL_mixer.h>
+#include <SDL\SDL_ttf.h>
 #include <vector>
+#include <sstream>
 
 
 class Player
@@ -58,13 +60,16 @@ public:
 	//Wall Collision
 	bool IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev, Player &p);
 
+	//Text updating and drawing
+	void DrawText(SDL_Renderer * renderTarget);
+	void UpdateText(SDL_Renderer * renderTarget, SDL_Event ev);
+
 	int getPlayerY = 400;
 	int getPlayerX = 50;
 
 	bool moving = true;
 	bool secondZombieMoving = true;
 	bool dead = false;
-
 private:
 	SDL_Rect cropRect;
 	SDL_Texture *texture;
@@ -106,7 +111,22 @@ private:
 	bool falling = false;
 	float gravity = 0.2;
 	bool isJumping = false;
-
+	
+	bool reloading = false;
+	Mix_Chunk *fire_bullet = Mix_LoadWAV("fire_bullet.wav");
+	Mix_Chunk *reloading_sound = Mix_LoadWAV("reload.wav");
+	
+	SDL_Rect bulletsRect;
+	SDL_Rect bulletsTextRect;
+	SDL_Surface* BulletDrawSurface;
+	SDL_Texture* BulletDrawTexture;
+	SDL_Surface* BulletDrawTextSurface;
+	SDL_Texture* BulletDrawTextTexture;
+	std::stringstream bulletsdrawStream;
+	TTF_Font *text;
+	SDL_Color White = { 255, 255, 255 };
+	int bullets = 15;
+	bool updateTheText = false;
 	unsigned int lastTime = 0, currentTime;
 
 	SDL_Scancode keys[9];

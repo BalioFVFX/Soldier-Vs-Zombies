@@ -262,12 +262,12 @@ void Player::DrawText(SDL_Renderer * renderTarget)
 
 }
 
-void Player::UpdateText(SDL_Renderer * renderTarget, SDL_Event ev)
+void Player::UpdateText(SDL_Renderer * renderTarget, Player & p)
 {
 
 		bulletsdrawStream.str("");
-		bulletsdrawStream << bullets;
-		
+		bulletsdrawStream << p.bullets;
+	
 	BulletDrawSurface = TTF_RenderText_Solid(text, bulletsdrawStream.str().c_str(), White);
 	BulletDrawTexture = SDL_CreateTextureFromSurface(renderTarget, BulletDrawSurface);
 }
@@ -461,21 +461,20 @@ void Player::DrawBullet(SDL_Renderer *renderBullet, Player &p, const Uint8 *keys
 			fired = true;
 			std::cout << bullets << std::endl;
 			Mix_PlayChannel(1, fire_bullet, 0);
-			bullets -= 1;
+			p.bullets -= 1;
 		}
 
 	}
 	
-	if (bullets == 0)
+	if (p.bullets == 0)
 	{
-	
 		reloading = true;
 		currentTime = SDL_GetTicks();
-		Mix_PlayChannel(1, reloading_sound, 0);
-		if (currentTime > lastTime + 5000) {
+		Mix_PlayChannel(4, reloading_sound, 0);
+		if (currentTime > lastTime + 7000) {
 			lastTime = currentTime;
 			reloading = false;
-			bullets = 15;
+			p.bullets = 15;
 			
 		}
 	}

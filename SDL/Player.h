@@ -62,7 +62,7 @@ public:
 
 	//Text updating and drawing
 	void DrawText(SDL_Renderer * renderTarget);
-	void UpdateText(SDL_Renderer * renderTarget, SDL_Event ev);
+	void UpdateText(SDL_Renderer * renderTarget, Player &p);
 
 	int getPlayerY = 400;
 	int getPlayerX = 50;

@@ -98,7 +98,7 @@ int main(int argc, char** argv)
 	TTF_Font *text;
 	text = TTF_OpenFont("batmfa__.ttf", 24);
 	SDL_Color White = { 255, 255, 255 };
-	window = SDL_CreateWindow("Soldier vs Zombies 2.9", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_FOREIGN);
+	window = SDL_CreateWindow("Soldier vs Zombies 3.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_FOREIGN);
 	renderTarget = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0);
@@ -168,7 +168,7 @@ int main(int argc, char** argv)
 	Mix_Chunk *steps = Mix_LoadWAV("steps.wav"); 
 	Mix_Chunk *buttonClick = Mix_LoadWAV("button_sound.wav");
 
-	//Mix_PlayMusic(bgmusic, 1); MUSIC 
+	Mix_PlayMusic(bgmusic, 1); 
 
 	int LowVolume = 20;
 	int mediumVolume = 70;
@@ -784,7 +784,7 @@ int main(int argc, char** argv)
 			if (regularBullet == true && isPaused == false)
 			{
 				bullet.DrawBullet(renderTarget, player1, keyState); //Draw bullet	
-				player1.UpdateText(renderTarget, ev);
+				player1.UpdateText(renderTarget, player1);
 			}
 
 			if (laserBullet == true && isPaused == false )
@@ -812,7 +812,7 @@ int main(int argc, char** argv)
 
 			if (bullet.IntersectwithBullet(zombie) == true)
 			{
-				Mix_PlayChannel(1, hitmarker, 0); //Hitmarker sound effect
+				Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 				explosion.drawExplosion(renderTarget, zombie);
 				zombieHealth -= 4;
 				//Damage
@@ -859,7 +859,7 @@ int main(int argc, char** argv)
 
 			if (Laser.IntersectwithLaser(zombie) == true)
 			{
-				Mix_PlayChannel(1, hitmarker, 0); //Hitmarker sound effect
+				Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 				explosion.drawExplosion(renderTarget, zombie);
 				fixedCoins += 10;
 				zombieHealth -= 7;
@@ -902,7 +902,7 @@ int main(int argc, char** argv)
 
 		if (UpgradedLaser.IntersectwithUpgradedLaser(zombie) == true)
 		{
-			Mix_PlayChannel(1, hitmarker, 0); //Hitmarker sound effect
+			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 			explosion.drawExplosion(renderTarget, zombie);
 			zombieHealth -= 12;
 			//Damage
@@ -952,7 +952,7 @@ int main(int argc, char** argv)
 
 		if (bullet.IntersectwithBullet(zombie2nd) == true)
 		{
-			Mix_PlayChannel(1, hitmarker, 0); //Hitmarker sound effect
+			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 			explosion.drawExplosion(renderTarget, zombie2nd);
 			zombieHealth -= 4;
 
@@ -996,7 +996,7 @@ int main(int argc, char** argv)
 		/***************************************LASER DETECTION2ND******************************************/
 		if (Laser.IntersectwithLaser(zombie2nd) == true)
 		{
-			Mix_PlayChannel(1, hitmarker, 0); //Hitmarker sound effect
+			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 			explosion.drawExplosion(renderTarget, zombie2nd);
 			zombieHealth -= 7;
 
@@ -1037,7 +1037,7 @@ int main(int argc, char** argv)
 
 		if (UpgradedLaser.IntersectwithUpgradedLaser(zombie2nd) == true)
 		{
-			Mix_PlayChannel(1, hitmarker, 0); //Hitmarker sound effect
+			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 			explosion.drawExplosion(renderTarget, zombie2nd);
 			zombieHealth -= 12;
 
@@ -1079,7 +1079,7 @@ int main(int argc, char** argv)
 		//THIRD
 		if (bullet.IntersectwithBullet(zombie3rd) == true)
 		{
-			Mix_PlayChannel(1, hitmarker, 0); //Hitmarker sound effect
+			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 			explosion.drawExplosion(renderTarget, zombie3rd);
 			zombieHealth -= 4;
 
@@ -1119,7 +1119,7 @@ int main(int argc, char** argv)
 		//Laser 3RD
 		if (Laser.IntersectwithLaser(zombie3rd) == true)
 		{
-			Mix_PlayChannel(1, hitmarker, 0); //Hitmarker sound effect
+			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 			explosion.drawExplosion(renderTarget, zombie3rd);
 			zombieHealth -= 7;
 
@@ -1162,7 +1162,7 @@ int main(int argc, char** argv)
 
 		if (UpgradedLaser.IntersectwithUpgradedLaser(zombie3rd) == true)
 		{
-			Mix_PlayChannel(1, hitmarker, 0); //Hitmarker sound effect
+			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 			explosion.drawExplosion(renderTarget, zombie3rd);
 			zombieHealth -= 12;
 
@@ -1269,7 +1269,7 @@ int main(int argc, char** argv)
 
 			if (FireTheLaser == true)
 			{
-				Mix_PlayChannel(1, laser_sound, 0);
+				Mix_PlayChannel(2, laser_sound, 0);
 				FireTheLaser = false;
 				laserBullet = true;
 			}
@@ -1283,7 +1283,7 @@ int main(int argc, char** argv)
 
 			if (FireTheUpgradedLaser == true)
 			{
-				Mix_PlayChannel(1, upgradedLaser_sound, 0); //Hitmarker sound effect
+				Mix_PlayChannel(3, upgradedLaser_sound, 0); //Hitmarker sound effect
 				FireTheUpgradedLaser = false;
 				upgradedLaserBullet = true;
 			}

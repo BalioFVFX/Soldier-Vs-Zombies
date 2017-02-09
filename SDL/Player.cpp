@@ -245,7 +245,6 @@ bool Player::IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev
 
 	else
 	{
-		std::cout << "Touched" << std::endl;
 		cropRect.y = frameHeight;
 		positionRect.x += moveSpeed* delta;
 		cropRect.y = frameHeight * 3;
@@ -271,7 +270,6 @@ void Player::UpdateText(SDL_Renderer * renderTarget, Player & p)
 	BulletDrawSurface = TTF_RenderText_Solid(text, bulletsdrawStream.str().c_str(), White);
 	BulletDrawTexture = SDL_CreateTextureFromSurface(renderTarget, BulletDrawSurface);
 }
-
 
 
 void Player::UpdateZombie(float delta, const Uint8 * keystate, SDL_Event ev, Player &p)
@@ -450,7 +448,10 @@ void Player::updateWin(float delta, const Uint8 * keystate, SDL_Event ev, Player
 
 void Player::DrawBullet(SDL_Renderer *renderBullet, Player &p, const Uint8 *keystate)
 {
+
 	
+	
+
 	if (fired == false && reloading == false)
 	{
 		
@@ -459,13 +460,14 @@ void Player::DrawBullet(SDL_Renderer *renderBullet, Player &p, const Uint8 *keys
 			bullet_rect.x = p.positionRect.x;
 			bullet_rect.y = p.positionRect.y;
 			fired = true;
-			std::cout << bullets << std::endl;
 			Mix_PlayChannel(1, fire_bullet, 0);
 			p.bullets -= 1;
+			
 		}
 
 	}
 	
+
 	if (p.bullets == 0)
 	{
 		reloading = true;
@@ -479,10 +481,15 @@ void Player::DrawBullet(SDL_Renderer *renderBullet, Player &p, const Uint8 *keys
 		}
 	}
 
-	
 	bullet_rect.x += 20;
+
+	if (bullet_rect.x >= 700)
+	{
+		bullet_rect.x = 9999;
+		fired = false;
+	}
 	
-	
+
 	SDL_RenderCopy(renderBullet, texture, NULL, &bullet_rect);
 }
 
@@ -499,6 +506,12 @@ void Player::drawLaser(SDL_Renderer *renderBullet, Player &p, const Uint8 *keyst
 	}
 
 		laser_rect.x += 20;
+
+		if (laser_rect.x >= 700)
+		{
+			laser_rect.x = 9999;
+			fired = false;
+		}
 	
 
 	SDL_RenderCopy(renderBullet, texture, NULL, &laser_rect);
@@ -516,7 +529,12 @@ void Player::drawUpgradedLaser(SDL_Renderer *renderBullet, Player &p, const Uint
 		}
 	}
 		upgradedLaser_Rect.x += 20;
-	
+		
+	if (upgradedLaser_Rect.x >= 700)
+	{
+		upgradedLaser_Rect.x = 9999;
+		fired = false;
+	}
 
 	SDL_RenderCopy(renderBullet, texture, NULL, &upgradedLaser_Rect);
 }
@@ -565,6 +583,7 @@ bool Player::IntersectwithBullet(Player &p)
 		SDL_SetTextureColorMod(p.texture, 255, 255, 255);
 		return false;
 	}
+
 
 	else
 	{

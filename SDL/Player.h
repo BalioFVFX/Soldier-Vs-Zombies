@@ -47,7 +47,7 @@ public:
 	void UpdateZombie(float delta, const Uint8 *keystate, SDL_Event ev, Player &p);
 	void UpdateSecondZombie(float delta, const Uint8 *keystate, SDL_Event ev, Player &p);
 	void UpdateThirdZombie(float delta, const Uint8 *keystate, SDL_Event ev, Player &p);
-
+	
 	//Win
 	void win(SDL_Renderer* renderTarget);
 	void updateWin(float delta, const Uint8 *keystate, SDL_Event ev, Player &p);
@@ -128,7 +128,6 @@ private:
 	int bullets = 15;
 	bool updateTheText = false;
 	unsigned int lastTime = 0, currentTime;
-
 	SDL_Scancode keys[9];
 };
 

@@ -1,10 +1,25 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (SDL TEST.vcxproj, Soldier Vs Zombies 2.2.vcxproj, Soldier Vs Zombies 2.9.vcxproj, Soldiers Vs Zombies 2.0.vcxproj, Soldiers Vs Zombies 2.2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Player.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(112): warning C4305: 'initializing': truncation from 'double' to 'float'
+Player.cpp(146): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(148): warning C4552: '-': operator has no effect; expected operator with side-effect
+Player.cpp(161): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(174): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(181): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(204): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+Player.cpp(208): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+Player.cpp(249): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(287): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(330): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(372): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
   Source.cpp
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(112): warning C4305: 'initializing': truncation from 'double' to 'float'
 Source.cpp(1236): warning C4018: '>': signed/unsigned mismatch
 Source.cpp(104): warning C4390: ';': empty controlled statement found; is this the intent?
   Generating code
-  All 564 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  133 of 561 functions (23.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    23 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Release\Soldier Vs Zombies 3.0.exe
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Release\Soldier Vs Zombies 3.0.pdb (Full PDB)

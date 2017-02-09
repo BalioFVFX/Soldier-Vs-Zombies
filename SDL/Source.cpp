@@ -711,7 +711,7 @@ int main(int argc, char** argv)
 			if (zombieDrawBullet.IntersectwithWall(delta, keyState, ev, drawTheWall)) 
 				{
 					timesWereHitted += 1;
-					cout << timesWereHitted << endl;
+					
 				}
 		
 

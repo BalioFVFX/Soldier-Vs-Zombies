@@ -311,10 +311,13 @@ int main(int argc, char** argv)
 			{
 				if (ev.button.button == SDL_BUTTON_LEFT)
 				{
-					drawPosX  = ev.button.x;
-					drawPosY = ev.button.y;
-					drawIt = true;
-					cantTouch = false;
+					if (y > 424)
+					{
+						drawPosX = ev.button.x;
+						drawPosY = ev.button.y;
+						drawIt = true;
+						cantTouch = false;
+					}
 				}
 					// do something
 				else if (ev.button.button == SDL_BUTTON_RIGHT)
@@ -410,7 +413,8 @@ int main(int argc, char** argv)
 				//Get the mouse offsets
 				x = ev.motion.x;
 				y = ev.motion.y;
-
+				std::cout << "X: " << ev.motion.x << std::endl;
+				std::cout << "y: " << ev.motion.y << std::endl;
 				//If the mouse is over the button
 				if ((x > 257) && (x < 257 + 120) && (y > 240) && (y < 240 + 45))
 				{
@@ -1263,7 +1267,6 @@ int main(int argc, char** argv)
 				{
 					gameWin.updateWin(delta, keyState, ev, gameWin);
 					secondfirework.updateWin(delta, keyState, ev, gameWin);
-					drawTheWall.updateWall(delta, keyState, ev, drawTheWall);
 				}
 			}
 

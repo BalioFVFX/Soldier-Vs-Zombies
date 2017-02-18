@@ -167,8 +167,8 @@ int main(int argc, char** argv)
 	Mix_Chunk *hitmarker = Mix_LoadWAV("hitmarker.wav");
 	Mix_Chunk *steps = Mix_LoadWAV("steps.wav"); 
 	Mix_Chunk *buttonClick = Mix_LoadWAV("button_sound.wav");
-
-	Mix_PlayMusic(bgmusic, 1); 
+	//Background music
+	//Mix_PlayMusic(bgmusic, 1); 
 
 	int LowVolume = 20;
 	int mediumVolume = 70;
@@ -847,7 +847,7 @@ int main(int argc, char** argv)
 				
 				
 
-				if (zombieHealth == 0)
+				if (zombieHealth <= 0)
 				{
 					zombie1Alive = false;
 					zombieHealth = 100;

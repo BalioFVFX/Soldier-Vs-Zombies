@@ -590,7 +590,7 @@ bool Player::IntersectwithBullet(Player &p)
 		p.firstZombieHealth -= 4;
 		bullet_rect.x = 9999;
 		
-		if (p.firstZombieHealth == 0)
+		if (p.firstZombieHealth <= 0)
 		{
 			p.positionRect.x = 0;
 			p.positionRect.y = 10;

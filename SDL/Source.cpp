@@ -35,7 +35,7 @@ bool spawn2ndZombie = false;
 bool spawn3rdZombie = false;
 bool zombieAttack = false;
 bool gameOver = false;
-bool startOver = false;
+bool gameOverExit = false;
 bool regularZombieUpdate = true;
 bool slowZombieUpdate = false;
 bool exitGame = false;
@@ -296,13 +296,15 @@ int main(int argc, char** argv)
 					isPaused = false;
 					break;
 				case SDLK_x:
-					startOver = true;
+					if (gameOver == true)
+					{
+						gameOverExit = true;
+					}
 					break;
 		//Ultimate testing button :D
 				case SDLK_n:
 					testbool = true;
 					break;
-				
 				case SDLK_ESCAPE:
 					exitGame = true;
 				}
@@ -487,12 +489,11 @@ int main(int argc, char** argv)
 		//If game over
 		if (gameOver == true)
 		{
-			gameOverScreen.showGameOver(renderTarget);
-			if (startOver == true)
-			{
-				inGame = false;
-				inMenu = true;
-			}
+				gameOverScreen.showGameOver(renderTarget);
+				if (gameOver && gameOverExit == true)
+				{
+					break;
+				}
 		}
 
 		//If in settings menu
@@ -739,7 +740,7 @@ int main(int argc, char** argv)
 				{
 					gameOver = true;
 					inGame = false;
-					inMenu = false;
+					inMenu = true;
 					inSettings = false;
 					inShop = false;
 				}

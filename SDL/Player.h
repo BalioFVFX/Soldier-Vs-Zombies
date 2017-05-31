@@ -10,6 +10,8 @@
 class Player
 {
 public:
+	Player();
+	Player(int a, int b);
 	Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY);
 	~Player();
 
@@ -17,7 +19,6 @@ public:
 	
 	//Drawing Functions
 	void Draw(SDL_Renderer *renderTarget);
-	void DrawBullet(SDL_Renderer * renderBullet, Player &p, const Uint8 *keystate);
 	void drawLaser(SDL_Renderer * renderBullet, Player &p, const Uint8 *keystate);
 	void drawUpgradedLaser(SDL_Renderer * renderBullet, Player &p, const Uint8 *keystate);
 
@@ -61,8 +62,6 @@ public:
 	bool IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev, Player &p);
 
 	//Text updating and drawing
-	void DrawText(SDL_Renderer * renderTarget);
-	void UpdateText(SDL_Renderer * renderTarget, Player &p);
 
 	int getPlayerY = 400;
 	int getPlayerX = 50;
@@ -70,11 +69,14 @@ public:
 	bool moving = true;
 	bool secondZombieMoving = true;
 	bool dead = false;
+
+	SDL_Rect positionRect;
+
 private:
 	SDL_Rect cropRect;
 	SDL_Texture *texture;
 
-	SDL_Rect positionRect;
+
 	SDL_Rect firework_Rect;
 
 	SDL_Rect bullet_rect;

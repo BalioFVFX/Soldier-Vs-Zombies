@@ -9,6 +9,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include "Bullet.h"
 
 int x = 0, y = 0;
 using namespace std;
@@ -51,6 +52,10 @@ bool FireTheUpgradedLaser = false;
 bool isPaused = false;
 
 bool isItUpgraded = false;
+
+bool bKeyUP = 0, BkeyDown = 0, bKeyLeft = 0, bKeyRight = 0, bKeyA = 0;
+int bKeyATick = 0;
+int aTick = 0;
 
 int drawPosX = 0;
 int drawPosY = 0;
@@ -98,16 +103,25 @@ int main(int argc, char** argv)
 	TTF_Font *text;
 	text = TTF_OpenFont("batmfa__.ttf", 24);
 	SDL_Color White = { 255, 255, 255 };
-	window = SDL_CreateWindow("Soldier vs Zombies 3.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_FOREIGN);
+	window = SDL_CreateWindow("Soldier vs Zombies 3.5", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_FOREIGN);
 	renderTarget = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0);
 	
 	//Player overall:
 	Player player1(renderTarget, "soldier.png", 50, 400, 9, 4); //Position and croping..
-	Player bullet(renderTarget, "bullet.png", 0, 0, 1, 1); //Position and useless croping..
 	Player Laser(renderTarget, "laser.png", 0, 0, 1, 1);
 	Player UpgradedLaser(renderTarget, "upgradedlaser.png", 0, 0, 1, 1);
+	Bullet ammo[10];
+	Bullet bullet(renderTarget, "ball.png");
+
+	for (int i = 0; i < 4; i++)
+	{
+		ammo[i].alive = 0;
+		ammo[i].b.x = 2;
+		ammo[i].w = ammo[i].h = 10; //Bulet Size Configuration
+	}
+
 
 	//Zombie Overall:
 	Player zombie(renderTarget, "zombie1.png", 600, 400, 4, 4); //Position and croping..
@@ -154,6 +168,8 @@ int main(int argc, char** argv)
 	Menu shopMenu(renderTarget, "shop.png", 0, 0);
 	Menu shopText(renderTarget, "", 0, 0);
 	Menu UpgradedLaserInShop(renderTarget, "upgradedlaser.png", 0, 0);
+
+	Bullet * _bullet = new Bullet(renderTarget, "bullet.png");
 
 	bool isRunning = true;
 
@@ -267,74 +283,15 @@ int main(int argc, char** argv)
 
 	while (isRunning)
 	{
-	
+		std::cout << "BKEYA: " << bKeyA << std::endl;
+		std::cout << "aTick: " << aTick << std::endl;
+		aTick++;
+
 		prevTime = currentTime;
 		currentTime = SDL_GetTicks();
 		delta = (currentTime - prevTime) / 1000.0f;
-		while (SDL_PollEvent(&ev) != 0)
-		{
-			if (ev.type == SDL_QUIT)
-				isRunning = false;
-			else if (ev.type == SDL_KEYUP)
-			{
-				switch (ev.key.keysym.sym)
-				{
-				case SDLK_f:
-					FireTheBullet = true;
-					break;
-				case SDLK_e:
-					FireTheUpgradedLaser = true;
-					break;
-				case SDLK_q:
-					FireTheLaser = true;
-					break;
-				case SDLK_p:
-					isPaused = true;
-					break;
-				case SDLK_c:
-					inGame = true;
-					isPaused = false;
-					break;
-				case SDLK_x:
-					if (gameOver == true)
-					{
-						gameOverExit = true;
-					}
-					break;
-		//Ultimate testing button :D
-				case SDLK_n:
-					testbool = true;
-					break;
-				case SDLK_ESCAPE:
-					exitGame = true;
-				}
-			}
-			else if (ev.type == SDL_MOUSEBUTTONDOWN && SDL_MOUSEMOTION && inGame && cantTouch == true)
-			{
-				if (ev.button.button == SDL_BUTTON_LEFT)
-				{
-					if (y > 424)
-					{
-						drawPosX = ev.button.x;
-						drawPosY = ev.button.y;
-						drawIt = true;
-						cantTouch = false;
-					}
-				}
-					// do something
-				else if (ev.button.button == SDL_BUTTON_RIGHT)
-				{
-					
-				}
-				if (SDL_MOUSEMOTION)
-				{
-					
-				}
-				// do something
-			}
-		}
 		
-
+	
 		
 		SDL_RenderClear(renderTarget);
 
@@ -669,12 +626,35 @@ int main(int argc, char** argv)
 			enviroment.drawEnviroment(renderTarget);
 		
 			player1.Draw(renderTarget);  //Draw first player
+	
+			//Draw the bullets somewhere on the screen:
+		//	_bullet[0].drawBulletBullet(renderTarget); // Render the bullet - Works;
+			//_bullet[0].bulletPosRect.x = 220; //Set the position of the bullet - Works;
+
+			//_bullet[1].drawBulletBullet(renderTarget); //Not working (I can't render second bullet on the screen)
+	
 
 			SDL_RenderCopy(renderTarget, CoinsTextTexture, NULL, &CoinsTextRect);
 			
 			SDL_RenderCopy(renderTarget, PlayerHealthTexture, NULL, &PlayerHealthRect);
 			SDL_RenderCopy(renderTarget, PlayerTextHealthTexture, NULL, &PlayerTextHealthRect);
-			player1.DrawText(renderTarget);
+			SDL_SetRenderDrawColor(renderTarget, 255, 255, 255, SDL_ALPHA_OPAQUE);
+			SDL_RenderDrawLine(renderTarget, 320, 200, 300, 240);
+			SDL_RenderDrawLine(renderTarget, 300, 240, 340, 240);
+			SDL_RenderDrawLine(renderTarget, 340, 240, 320, 200);
+
+	
+			if (bKeyA == 1 && aTick % 10 == 1)
+			{
+
+				ammo->handleInput(ammo, player1);
+
+			}
+
+
+
+			bullet.drawBulletche(renderTarget, ammo);
+			
 			
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
 			{
@@ -786,11 +766,7 @@ int main(int argc, char** argv)
 				zombieDrawBulletVer2.DrawBullet4ZombieVer2(renderTarget, zombie3rd, keyState);
 			}
 			
-			if (regularBullet == true && isPaused == false)
-			{
-				bullet.DrawBullet(renderTarget, player1, keyState); //Draw bullet	
-				player1.UpdateText(renderTarget, player1);
-			}
+			
 
 			if (laserBullet == true && isPaused == false )
 			{
@@ -815,48 +791,7 @@ int main(int argc, char** argv)
 
 			/***************************************BULLET DETECTION******************************************/
 
-			if (bullet.IntersectwithBullet(zombie) == true)
-			{
-				Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
-				explosion.drawExplosion(renderTarget, zombie);
-				zombieHealth -= 4;
-				//Damage
-				zombiehealthSTREAM.str("");
-				zombiehealthSTREAM << zombieHealth;
-
-				ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-				ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
-
-				//Coins
-				coinsFromFille++;
-				writeFile.clear();
-				writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-
-				writeFile << coinsFromFille;
-				writeFile << "\n";
-				writeFile.close();
-
-
-
-				coinstream.str("");
-				coinstream << coinsFromFille++;
-
-				CoinSurface = TTF_RenderText_Solid(text, coinstream.str().c_str(), White);
-				CoinTexture = SDL_CreateTextureFromSurface(renderTarget, CoinSurface);
-			
-				
-				
-
-				if (zombieHealth <= 0)
-				{
-					zombie1Alive = false;
-					zombieHealth = 100;
-					zombiehealthSTREAM << zombieHealth + 100;
-					spawn2ndZombie = true;
-				}
-
-			}
+		
 
 			/***************************************BULLET DETECTION******************************************/
 
@@ -950,52 +885,9 @@ int main(int argc, char** argv)
 		
 
 
-		
-
 		//Second Zombie Detection
 		/***************************************BULLET DETECTION2ND******************************************/
 
-		if (bullet.IntersectwithBullet(zombie2nd) == true)
-		{
-			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
-			explosion.drawExplosion(renderTarget, zombie2nd);
-			zombieHealth -= 4;
-
-			//Damage
-			zombiehealthSTREAM.str("");
-			zombiehealthSTREAM << zombieHealth;
-
-			ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
-
-			//Coins
-			coinsFromFille++;
-			writeFile.clear();
-			writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-
-			writeFile << coinsFromFille;
-			writeFile << "\n";
-			writeFile.close();
-
-
-
-			coinstream.str("");
-			coinstream << coinsFromFille++;
-
-			CoinSurface = TTF_RenderText_Solid(text, coinstream.str().c_str(), White);
-			CoinTexture = SDL_CreateTextureFromSurface(renderTarget, CoinSurface);
-
-
-			if (zombieHealth <= 0)
-			{
-				zombieHealth = 100;
-				zombiehealthSTREAM << zombieHealth + 100;
-				spawn2ndZombie = false;
-				spawn3rdZombie = true;
-			}
-
-		}
 		/***************************************BULLET DETECTION2ND******************************************/
 
 		/***************************************LASER DETECTION2ND******************************************/
@@ -1081,46 +973,6 @@ int main(int argc, char** argv)
 		}
 		/***************************************LASER DETECTION2ND******************************************/
 		
-		//THIRD
-		if (bullet.IntersectwithBullet(zombie3rd) == true)
-		{
-			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
-			explosion.drawExplosion(renderTarget, zombie3rd);
-			zombieHealth -= 4;
-
-			//Damage
-			zombiehealthSTREAM.str("");
-			zombiehealthSTREAM << zombieHealth;
-
-			ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
-
-			//Coins
-			coinsFromFille++;
-			writeFile.clear();
-			writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-
-			writeFile << coinsFromFille;
-			writeFile << "\n";
-			writeFile.close();
-
-			coinstream.str("");
-			coinstream << coinsFromFille++;
-
-			CoinSurface = TTF_RenderText_Solid(text, coinstream.str().c_str(), White);
-			CoinTexture = SDL_CreateTextureFromSurface(renderTarget, CoinSurface);
-
-
-			if (zombieHealth <= 0)
-			{
-				zombieHealth = 100;
-				zombiehealthSTREAM << zombieHealth + 100;
-				spawn3rdZombie = false;
-				isgamewin = true;
-			}
-
-		}
 		//Laser 3RD
 		if (Laser.IntersectwithLaser(zombie3rd) == true)
 		{
@@ -1213,7 +1065,6 @@ int main(int argc, char** argv)
 			{
 				keyState = SDL_GetKeyboardState(NULL);
 				player1.Update(delta, keyState, ev);
-
 				if (regularZombieUpdate == true)
 				{
 					zombie.UpdateZombie(delta, keyState, ev, zombie);
@@ -1307,6 +1158,80 @@ int main(int argc, char** argv)
 		}
 
 		SDL_RenderPresent(renderTarget);
+
+		while (SDL_PollEvent(&ev) != 0)
+		{
+			if (ev.type == SDL_QUIT)
+				isRunning = false;
+			else if (ev.type == SDL_KEYUP)
+			{
+				switch (ev.key.keysym.sym)
+				{
+				case SDLK_f:
+					FireTheBullet = true;
+					bKeyA = 0;
+					break;
+				case SDLK_e:
+					FireTheUpgradedLaser = true;
+					break;
+				case SDLK_q:
+					FireTheLaser = true;
+					break;
+				case SDLK_p:
+					isPaused = true;
+					break;
+				case SDLK_c:
+					inGame = true;
+					isPaused = false;
+					break;
+				case SDLK_x:
+					if (gameOver == true)
+					{
+						gameOverExit = true;
+					}
+					break;
+					//Ultimate testing button :D
+				case SDLK_r:
+					testbool = true;
+					break;
+				case SDLK_ESCAPE:
+					exitGame = true;
+				}
+			}
+			else if (ev.type == SDL_KEYDOWN)
+			{
+				switch (ev.key.keysym.sym)
+				{
+				case SDLK_f:
+					bKeyA = 1;
+					break;
+				}
+			}
+			else if (ev.type == SDL_MOUSEBUTTONDOWN && SDL_MOUSEMOTION && inGame && cantTouch == true)
+			{
+				if (ev.button.button == SDL_BUTTON_LEFT)
+				{
+					if (y > 424)
+					{
+						drawPosX = ev.button.x;
+						drawPosY = ev.button.y;
+						drawIt = true;
+						cantTouch = false;
+					}
+				}
+				// do something
+				else if (ev.button.button == SDL_BUTTON_RIGHT)
+				{
+
+				}
+				if (SDL_MOUSEMOTION)
+				{
+
+				}
+				// do something
+			}
+		}
+
 }
 	
 	SDL_DestroyWindow(window);

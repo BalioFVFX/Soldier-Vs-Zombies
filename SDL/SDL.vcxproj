@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0794E48D-D375-468D-B9C3-5565A43A9762}</ProjectGuid>
     <RootNamespace>SDL</RootNamespace>
-    <ProjectName>Soldier Vs Zombies 3.0</ProjectName>
+    <ProjectName>Soldier Vs Zombies 3.5</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Enviroment.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -83,6 +84,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Enviroment.h" />
     <ClInclude Include="Menu.h" />

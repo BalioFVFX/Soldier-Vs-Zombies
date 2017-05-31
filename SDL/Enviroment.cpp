@@ -5,6 +5,7 @@ Enviroment::Enviroment(SDL_Renderer * renderTarget, std::string filePath, int x,
 	SDL_Surface *surface = IMG_Load(filePath.c_str());
 
 	texture = SDL_CreateTextureFromSurface(renderTarget, surface);
+
 }
 
 Enviroment::~Enviroment()

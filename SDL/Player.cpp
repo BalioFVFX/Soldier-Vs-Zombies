@@ -44,11 +44,6 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 	secondZombieRect.w = 100;
 	secondZombieRect.h = 100;
 
-	bullet_rect.x = 50;
-	bullet_rect.y = 400;
-	bullet_rect.w = 40;
-	bullet_rect.h = 40;
-
 	laser_rect.x = 50;
 	laser_rect.y = 400;
 	laser_rect.w = 70;
@@ -92,31 +87,15 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 
 	moveSpeed = 200.0f;
 
-	
-	text = TTF_OpenFont("batmfa__.ttf", 24);
-	
-	
-	bulletsdrawStream << bullets;
+}
 
-	BulletDrawSurface = TTF_RenderText_Solid(text, bulletsdrawStream.str().c_str(), White);
-	BulletDrawTexture = SDL_CreateTextureFromSurface(renderTarget, BulletDrawSurface);
+Player::Player()
+{
 
-	BulletDrawTextSurface = TTF_RenderText_Solid(text, "Bullets ::", White);
-	BulletDrawTextTexture = SDL_CreateTextureFromSurface(renderTarget, BulletDrawTextSurface);
+}
 
-	bulletsRect.x = 140;
-	bulletsRect.y = 70;
-	bulletsRect.w = 100;
-	bulletsRect.h = 40;
-
-
-	bulletsTextRect.x = 20;
-	bulletsTextRect.y = 70;
-	bulletsTextRect.w = 100;
-	bulletsTextRect.h = 40;
-
-
-
+Player::Player(int a, int b)
+{
 }
 
 Player::~Player()
@@ -254,22 +233,6 @@ bool Player::IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev
 	return true;
 }
 
-void Player::DrawText(SDL_Renderer * renderTarget)
-{
-	SDL_RenderCopy(renderTarget, BulletDrawTexture, NULL, &bulletsRect);
-	SDL_RenderCopy(renderTarget, BulletDrawTextTexture, NULL, &bulletsTextRect);
-
-}
-
-void Player::UpdateText(SDL_Renderer * renderTarget, Player & p)
-{
-
-		bulletsdrawStream.str("");
-		bulletsdrawStream << p.bullets;
-	
-	BulletDrawSurface = TTF_RenderText_Solid(text, bulletsdrawStream.str().c_str(), White);
-	BulletDrawTexture = SDL_CreateTextureFromSurface(renderTarget, BulletDrawSurface);
-}
 
 
 void Player::UpdateZombie(float delta, const Uint8 * keystate, SDL_Event ev, Player &p)
@@ -446,52 +409,6 @@ void Player::updateWin(float delta, const Uint8 * keystate, SDL_Event ev, Player
 }
 
 
-void Player::DrawBullet(SDL_Renderer *renderBullet, Player &p, const Uint8 *keystate)
-{
-
-	
-	
-
-	if (fired == false && reloading == false)
-	{
-		
-		if (keystate[keys[5]])
-		{
-			bullet_rect.x = p.positionRect.x;
-			bullet_rect.y = p.positionRect.y;
-			fired = true;
-			Mix_PlayChannel(1, fire_bullet, 0);
-			p.bullets -= 1;
-			
-		}
-
-	}
-	
-
-	if (p.bullets == 0)
-	{
-		reloading = true;
-		currentTime = SDL_GetTicks();
-		Mix_PlayChannel(4, reloading_sound, 0);
-		if (currentTime > lastTime + 7000) {
-			lastTime = currentTime;
-			reloading = false;
-			p.bullets = 15;
-			
-		}
-	}
-
-	bullet_rect.x += 20;
-
-	if (bullet_rect.x >= 700)
-	{
-		bullet_rect.x = 9999;
-		fired = false;
-	}
-	
-
-	SDL_RenderCopy(renderBullet, texture, NULL, &bullet_rect);
-}
 
 void Player::drawLaser(SDL_Renderer *renderBullet, Player &p, const Uint8 *keystate)
 {

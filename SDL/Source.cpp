@@ -10,6 +10,7 @@
 #include <sstream>
 #include <fstream>
 #include "Bullet.h"
+#include "Zombie.h"
 
 int x = 0, y = 0;
 using namespace std;
@@ -127,6 +128,8 @@ int main(int argc, char** argv)
 	Player zombie(renderTarget, "zombie1.png", 600, 400, 4, 4); //Position and croping..
 	Player zombie2nd(renderTarget, "zombie2.png", 600, 400, 4, 4);
 	Player zombie3rd(renderTarget, "zombie3.png", 600, 400, 4, 4);
+	Zombie zombie1(renderTarget, "zombie1.png", 400, 400, 4, 4);
+	
 
 	Player zombieDrawBullet(renderTarget, "zombiebullet.png", 0, 0, 1, 1);
 	Player zombieDrawBulletVer2(renderTarget, "Zombie_Bullet Edited_Version_2.png", 0, 0, 1, 1);
@@ -752,6 +755,7 @@ int main(int argc, char** argv)
 			{
 				zombie.Draw(renderTarget); 
 				zombieDrawBullet.DrawBullet4Zombie(renderTarget, zombie, keyState);
+				zombie1.Draw(renderTarget);
 			}
 
 			if (spawn2ndZombie && isPaused == false)
@@ -1068,6 +1072,7 @@ int main(int argc, char** argv)
 				if (regularZombieUpdate == true)
 				{
 					zombie.UpdateZombie(delta, keyState, ev, zombie);
+					zombie1.Update(zombie1, delta, lastTime, currentTime);
 					if (spawn2ndZombie == true)
 					{
 						zombie2nd.UpdateZombie(delta, keyState, ev, zombie2nd);

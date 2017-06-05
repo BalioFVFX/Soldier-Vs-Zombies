@@ -7,6 +7,7 @@
 #include <sstream>
 
 
+
 class Player
 {
 public:
@@ -71,11 +72,13 @@ public:
 	bool dead = false;
 
 	SDL_Rect positionRect;
-
+	int GetOriginX();
+	int GetOriginY();
 private:
 	SDL_Rect cropRect;
 	SDL_Texture *texture;
-
+	int originX;
+	int originY;
 
 	SDL_Rect firework_Rect;
 

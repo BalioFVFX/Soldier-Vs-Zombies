@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <SDL\SDL_image.h>
 #include <iostream>
+#include <cmath>
 
 
 Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY)
@@ -25,12 +26,6 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 	firework_Rect.y = y;
 	firework_Rect.w = 240;
 	firework_Rect.h = 240;
-
-	zombieRect.x = x;
-	zombieRect.y = y;
-	zombieRect.w = 4400;
-	zombieRect.h = 440;
-
 	
 	
 	zombieBullet_Rect.x = 565;
@@ -67,7 +62,8 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 	frameWidth = positionRect.w = cropRect.w;
 	frameHeight = positionRect.h = cropRect.h;
 
-	
+	originX = frameWidth / 2;
+	originY = frameHeight / 2;
 
 	isActive = false;
 	isSecondActive = false;
@@ -100,7 +96,7 @@ Player::Player(int a, int b)
 
 Player::~Player()
 {
-	SDL_DestroyTexture(texture);
+	
 }
 
 void Player::Draw(SDL_Renderer *renderTarget)
@@ -231,6 +227,16 @@ bool Player::IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev
 		zombieBullet_Rect.x = -200;
 	}
 	return true;
+}
+
+int Player::GetOriginX()
+{
+	return originX;
+}
+
+int Player::GetOriginY()
+{
+	return originY;
 }
 
 

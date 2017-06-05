@@ -33,7 +33,9 @@ Zombie::Zombie(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 	frameWidth = zombieRect.w = cropRect.w;
 	frameHeight = zombieRect.h = cropRect.h;
 
-
+	originX = frameWidth / 2;
+	originY = frameHeight / 2;
+	radius = frameWidth / 2;
 
 	isActive = false;
 	isSecondActive = false;
@@ -44,6 +46,10 @@ Zombie::Zombie(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 
 
 Zombie::~Zombie()
+{
+}
+
+Zombie::Zombie()
 {
 }
 
@@ -99,3 +105,33 @@ void Zombie::Update(Zombie & zombie, float delta, unsigned int lastTime, int cur
 		cropRect.x = frameWidth;
 	}
 }
+
+int Zombie::GetOriginX()
+{
+	return zombieRect.x + originX;
+}
+
+int Zombie::GetOriginY()
+{
+	return zombieRect.y + originY;
+}
+
+int Zombie::GetRadius()
+{
+	return radius;
+}
+
+bool Zombie::checkCollision(Bullet bullet)
+{
+	if (sqrt(pow(bullet.GetOriginX() - GetOriginX(), 2) + pow(bullet.GetOriginY() - GetOriginY(), 2)) >= bullet.GetRadius() + GetRadius())
+	{
+		return false;
+	}
+
+	else {
+		zombieRect.x = 300;
+		return true;
+	}
+	
+}
+

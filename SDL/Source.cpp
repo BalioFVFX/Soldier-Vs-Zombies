@@ -11,8 +11,10 @@
 #include <fstream>
 #include "Bullet.h"
 #include "Zombie.h"
+#include "Collision.h"
 
 int x = 0, y = 0;
+int aTest = 0;
 using namespace std;
 //
 bool testbool = false;
@@ -113,28 +115,24 @@ int main(int argc, char** argv)
 	Player player1(renderTarget, "soldier.png", 50, 400, 9, 4); //Position and croping..
 	Player Laser(renderTarget, "laser.png", 0, 0, 1, 1);
 	Player UpgradedLaser(renderTarget, "upgradedlaser.png", 0, 0, 1, 1);
-	Bullet ammo[10];
-	Bullet bullet(renderTarget, "ball.png");
-
-	for (int i = 0; i < 4; i++)
-	{
-		ammo[i].alive = 0;
-		ammo[i].b.x = 2;
-		ammo[i].w = ammo[i].h = 10; //Bulet Size Configuration
-	}
+	Bullet ammo[4];
+	Bullet normalBullet();
+	Bullet otherBullet;
+	Bullet bullet(renderTarget, "ball.png", 2, 2, 4, 4);
+	int nz = 0;
 
 
 	//Zombie Overall:
-	Player zombie(renderTarget, "zombie1.png", 600, 400, 4, 4); //Position and croping..
-	Player zombie2nd(renderTarget, "zombie2.png", 600, 400, 4, 4);
-	Player zombie3rd(renderTarget, "zombie3.png", 600, 400, 4, 4);
-	Zombie zombie1(renderTarget, "zombie1.png", 400, 400, 4, 4);
-	
+	Zombie zombie1(renderTarget, "zombie1.png", 600, 400, 4, 4);
+	Zombie zombie2(renderTarget, "zombie2.png", 600, 400, 4, 4);
+	Zombie zombie3(renderTarget, "zombie3.png", 600, 400, 4, 4);
 
 	Player zombieDrawBullet(renderTarget, "zombiebullet.png", 0, 0, 1, 1);
 	Player zombieDrawBulletVer2(renderTarget, "Zombie_Bullet Edited_Version_2.png", 0, 0, 1, 1);
 	Player explosion(renderTarget, "explosion.gif", 0, 0, 1, 1);
 	Player explosionFromZombie(renderTarget, "explosion.gif", 0, 0, 1, 1);
+	
+	Collision collision;
 	
 	//Win
 	Player gameWin(renderTarget, "firework.png", 10, 100, 9, 4);
@@ -172,10 +170,9 @@ int main(int argc, char** argv)
 	Menu shopText(renderTarget, "", 0, 0);
 	Menu UpgradedLaserInShop(renderTarget, "upgradedlaser.png", 0, 0);
 
-	Bullet * _bullet = new Bullet(renderTarget, "bullet.png");
+	Bullet * _bullet = new Bullet(renderTarget, "bullet.png", 0 , 0, 1 ,1);
 
 	bool isRunning = true;
-
 	SDL_Event ev;
 	
 	//Loading music and sound effects
@@ -286,10 +283,9 @@ int main(int argc, char** argv)
 
 	while (isRunning)
 	{
-		std::cout << "BKEYA: " << bKeyA << std::endl;
-		std::cout << "aTick: " << aTick << std::endl;
+	//	std::cout << "BKEYA: " << bKeyA << std::endl;
+		//std::cout << "aTick: " << aTick << std::endl;
 		aTick++;
-
 		prevTime = currentTime;
 		currentTime = SDL_GetTicks();
 		delta = (currentTime - prevTime) / 1000.0f;
@@ -646,19 +642,22 @@ int main(int argc, char** argv)
 			SDL_RenderDrawLine(renderTarget, 300, 240, 340, 240);
 			SDL_RenderDrawLine(renderTarget, 340, 240, 320, 200);
 
+			
 	
 			if (bKeyA == 1 && aTick % 10 == 1)
 			{
 
-				ammo->handleInput(ammo, player1);
-
+				bullet.handleInput(ammo, player1);
 			}
 
-
+			
+		//	collision.playerBulletCollision(ammo, zombie1);
+			//collision.tester(ammo, zombie1);
+			collision.oldTest(ammo, zombie1);
 
 			bullet.drawBulletche(renderTarget, ammo);
-			
-			
+		
+
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
 			{
 				drawTheWall.drawWall(renderTarget, drawPosX, drawPosY);
@@ -702,8 +701,7 @@ int main(int argc, char** argv)
 					
 				}
 		
-
-		
+	
 
 			if (zombieDrawBullet.IntersectwithZombieBullet(player1))
 			{
@@ -751,23 +749,22 @@ int main(int argc, char** argv)
 			}
 
 
-			if (zombie1Alive)
-			{
-				zombie.Draw(renderTarget); 
-				zombieDrawBullet.DrawBullet4Zombie(renderTarget, zombie, keyState);
+
 				zombie1.Draw(renderTarget);
-			}
+			
 
 			if (spawn2ndZombie && isPaused == false)
 			{
-				zombie2nd.Draw(renderTarget);
-				zombieDrawBullet.DrawBullet4Zombie(renderTarget, zombie2nd, keyState);
+				zombie2.Draw(renderTarget);
+				//zombie2nd.Draw(renderTarget);
+				//zombieDrawBullet.DrawBullet4Zombie(renderTarget, zombie2nd, keyState);
 			}
 
 			if (spawn3rdZombie && isPaused == false)
 			{
-				zombie3rd.Draw(renderTarget);
-				zombieDrawBulletVer2.DrawBullet4ZombieVer2(renderTarget, zombie3rd, keyState);
+				zombie3.Draw(renderTarget);
+				//zombie3rd.Draw(renderTarget);
+				//zombieDrawBulletVer2.DrawBullet4ZombieVer2(renderTarget, zombie3rd, keyState);
 			}
 			
 			
@@ -801,89 +798,7 @@ int main(int argc, char** argv)
 
 			/***************************************LASER DETECTION******************************************/
 
-			if (Laser.IntersectwithLaser(zombie) == true)
-			{
-				Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
-				explosion.drawExplosion(renderTarget, zombie);
-				fixedCoins += 10;
-				zombieHealth -= 7;
-			
-				//Damage
-				zombiehealthSTREAM.str("");
-				zombiehealthSTREAM << zombieHealth;
 
-				ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-				ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
-
-				//Coins
-				coinsFromFille++;
-				writeFile.clear();
-				writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-
-				writeFile << coinsFromFille;
-				writeFile << "\n";
-				writeFile.close();
-
-
-
-				coinstream.str("");
-				coinstream << coinsFromFille++;
-
-				CoinSurface = TTF_RenderText_Solid(text, coinstream.str().c_str(), White);
-				CoinTexture = SDL_CreateTextureFromSurface(renderTarget, CoinSurface);
-				
-				if (zombieHealth <= 0)
-				{
-					zombie1Alive = false;
-					zombieHealth = 100;
-					zombiehealthSTREAM << zombieHealth + 100;
-					spawn2ndZombie = true;
-				}
-			}
-		
-
-
-		if (UpgradedLaser.IntersectwithUpgradedLaser(zombie) == true)
-		{
-			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
-			explosion.drawExplosion(renderTarget, zombie);
-			zombieHealth -= 12;
-			//Damage
-			zombiehealthSTREAM.str("");
-			zombiehealthSTREAM << zombieHealth;
-
-			ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
-
-			//Coins
-			coinsFromFille++;
-			writeFile.clear();
-			writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-
-			writeFile << coinsFromFille;
-			writeFile << "\n";
-			writeFile.close();
-
-
-
-			coinstream.str("");
-			coinstream << coinsFromFille++;
-
-			CoinSurface = TTF_RenderText_Solid(text, coinstream.str().c_str(), White);
-			CoinTexture = SDL_CreateTextureFromSurface(renderTarget, CoinSurface);
-			
-			
-			if (zombieHealth <= 0)
-			{
-				zombie1Alive = false;
-				zombieHealth = 100;
-				zombiehealthSTREAM << zombieHealth + 100;
-				spawn2ndZombie = true;
-			}
-
-		}
 		/***************************************LASER DETECTION******************************************/
 }
 		
@@ -895,132 +810,10 @@ int main(int argc, char** argv)
 		/***************************************BULLET DETECTION2ND******************************************/
 
 		/***************************************LASER DETECTION2ND******************************************/
-		if (Laser.IntersectwithLaser(zombie2nd) == true)
-		{
-			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
-			explosion.drawExplosion(renderTarget, zombie2nd);
-			zombieHealth -= 7;
-
-			//Damage
-			zombiehealthSTREAM.str("");
-			zombiehealthSTREAM << zombieHealth;
-
-			ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
-
-			//Coins
-			coinsFromFille++;
-			writeFile.clear();
-			writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-
-			writeFile << coinsFromFille;
-			writeFile << "\n";
-			writeFile.close();
-
-
-
-			coinstream.str("");
-			coinstream << coinsFromFille++;
-
-			CoinSurface = TTF_RenderText_Solid(text, coinstream.str().c_str(), White);
-			CoinTexture = SDL_CreateTextureFromSurface(renderTarget, CoinSurface);
-
-			if (zombieHealth <= 0)
-			{
-				zombieHealth = 100;
-				zombiehealthSTREAM << zombieHealth + 100;
-				spawn2ndZombie = false;
-				spawn3rdZombie = true;
-			}
 	
-		}
-
-		if (UpgradedLaser.IntersectwithUpgradedLaser(zombie2nd) == true)
-		{
-			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
-			explosion.drawExplosion(renderTarget, zombie2nd);
-			zombieHealth -= 12;
-
-			//Damage
-			zombiehealthSTREAM.str("");
-			zombiehealthSTREAM << zombieHealth;
-
-			ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
-
-			//Coins
-			coinsFromFille++;
-			writeFile.clear();
-			writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-
-			writeFile << coinsFromFille;
-			writeFile << "\n";
-			writeFile.close();
-
-
-
-			coinstream.str("");
-			coinstream << coinsFromFille++;
-
-			CoinSurface = TTF_RenderText_Solid(text, coinstream.str().c_str(), White);
-			CoinTexture = SDL_CreateTextureFromSurface(renderTarget, CoinSurface);
-
-			if (zombieHealth <= 0)
-			{
-				zombieHealth = 100;
-				zombiehealthSTREAM << zombieHealth + 100;
-				spawn2ndZombie = false;
-				spawn3rdZombie = true;
-			}
-		}
-		/***************************************LASER DETECTION2ND******************************************/
-		
-		//Laser 3RD
-		if (Laser.IntersectwithLaser(zombie3rd) == true)
-		{
-			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
-			explosion.drawExplosion(renderTarget, zombie3rd);
-			zombieHealth -= 7;
-
-			//Damage
-			zombiehealthSTREAM.str("");
-			zombiehealthSTREAM << zombieHealth;
-
-			ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
-
-			//Coins
-			coinsFromFille++;
-			writeFile.clear();
-			writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-
-			writeFile << coinsFromFille;
-			writeFile << "\n";
-			writeFile.close();
-
-
-
-			coinstream.str("");
-			coinstream << coinsFromFille++;
-
-			CoinSurface = TTF_RenderText_Solid(text, coinstream.str().c_str(), White);
-			CoinTexture = SDL_CreateTextureFromSurface(renderTarget, CoinSurface);
-
-			if (zombieHealth <= 0)
-			{
-				zombieHealth = 100;
-				zombiehealthSTREAM << zombieHealth + 100;
-				spawn3rdZombie = false;
-				isgamewin = true;
-			}
-
-		}
 
 		//Upgraded Laser 3RD
-
+/*
 		if (UpgradedLaser.IntersectwithUpgradedLaser(zombie3rd) == true)
 		{
 			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
@@ -1061,25 +854,29 @@ int main(int argc, char** argv)
 
 			}
 		}
-		
+		*/
 		if (isPaused == false)
 		{
 			//Keyboard events
 			if (inGame == true)
 			{
+				//std::cout << "Ammo - " << bullet.ammo << std::endl;
+
+				//std::cout << "Player x - " << player1.positionRect.x << std::endl;
+				//std::cout << "Player y - " << player1.positionRect.y << std::endl;
 				keyState = SDL_GetKeyboardState(NULL);
 				player1.Update(delta, keyState, ev);
 				if (regularZombieUpdate == true)
 				{
-					zombie.UpdateZombie(delta, keyState, ev, zombie);
+					//zombie.UpdateZombie(delta, keyState, ev, zombie);
 					zombie1.Update(zombie1, delta, lastTime, currentTime);
 					if (spawn2ndZombie == true)
 					{
-						zombie2nd.UpdateZombie(delta, keyState, ev, zombie2nd);
+						zombie2.Update(zombie2, delta, lastTime, currentTime);
 					}
 					if (spawn3rdZombie == true)
 					{
-						zombie3rd.UpdateZombie(delta, keyState, ev, zombie3rd);
+						zombie3.Update(zombie3, delta, lastTime, currentTime);
 					}
 
 				}
@@ -1098,26 +895,26 @@ int main(int argc, char** argv)
 					{
 						lastTime = currentTime;
 
-						zombie.UpdateZombie(delta, keyState, ev, zombie);
+						//zombie.UpdateZombie(delta, keyState, ev, zombie);
 						if (spawn2ndZombie == true)
 						{
-							zombie2nd.UpdateZombie(delta, keyState, ev, zombie2nd);
+							//zombie2nd.UpdateZombie(delta, keyState, ev, zombie2nd);
 						}
 						if (spawn3rdZombie == true)
 						{
-							zombie3rd.UpdateZombie(delta, keyState, ev, zombie3rd);
+							//zombie3rd.UpdateZombie(delta, keyState, ev, zombie3rd);
 						}
 					}
 				}
-
+			
 				if (spawn2ndZombie == true)
 				{
-					zombie2nd.UpdateSecondZombie(delta, keyState, ev, zombie2nd);
+					zombie2.Update(zombie2, delta, lastTime, currentTime);
 				}
 
 				if (spawn3rdZombie == true)
 				{
-					zombie3rd.UpdateThirdZombie(delta, keyState, ev, zombie3rd);
+					zombie3.Update(zombie3, delta, lastTime, currentTime);
 				}
 
 				if (isgamewin == true)

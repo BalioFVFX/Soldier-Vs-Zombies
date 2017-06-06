@@ -5,6 +5,7 @@
 
 Bullet::Bullet()
 {
+
 }
 
 Bullet::Bullet(SDL_Renderer * renderTarget, std::string filePath, int x, int y, int framesX, int framesY)
@@ -23,10 +24,10 @@ Bullet::Bullet(SDL_Renderer * renderTarget, std::string filePath, int x, int y, 
 	frameWidth = b.w = cropRect.w;
 	frameHeight = b.h = cropRect.h;
 
-	originX = frameWidth / 2;
-	originY = frameHeight / 2;
+	this->originX = 12;
+	this->originY = 12;
+	this->radius = 12;
 
-	radius = frameWidth / 2;
 
 }
 
@@ -41,6 +42,7 @@ void Bullet::init()
 	for (int i = 0; i < 4; i++)
 	{
 		bullet[i].alive = 0;
+
 
 	}
 }
@@ -84,17 +86,17 @@ void Bullet::drawBulletche(SDL_Renderer * renderTarget, Bullet bullet[])
 
 int Bullet::GetOriginX()
 {
-	return b.x + originX;
+	return b.x + 12;
 }
 
 int Bullet::GetOriginY()
 {
-	return b.y + originY;
+	return b.y + 12;
 }
 
 int Bullet::GetRadius()
 {
-	return radius;
+	return 12;
 }
 
 int Bullet::GetNumber()

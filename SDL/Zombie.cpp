@@ -17,8 +17,6 @@ Zombie::Zombie(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 	zombieRect.y = y;
 
 
-
-
 	zombieBulletRect.x = 565;
 	zombieBulletRect.y = 370;
 	zombieBulletRect.w = 40;
@@ -121,7 +119,7 @@ int Zombie::GetRadius()
 	return radius;
 }
 
-bool Zombie::checkCollision(Bullet bullet)
+/*bool Zombie::checkCollision(Bullet bullet)
 {
 	if (sqrt(pow(bullet.GetOriginX() - GetOriginX(), 2) + pow(bullet.GetOriginY() - GetOriginY(), 2)) >= bullet.GetRadius() + GetRadius())
 	{
@@ -135,3 +133,4 @@ bool Zombie::checkCollision(Bullet bullet)
 	
 }
 
+*/

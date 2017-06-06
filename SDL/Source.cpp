@@ -113,12 +113,13 @@ int main(int argc, char** argv)
 	
 	//Player overall:
 	Player player1(renderTarget, "soldier.png", 50, 400, 9, 4); //Position and croping..
+	Player testovBullet(renderTarget, "ball.png", 200, 400, 1, 1);
 	Player Laser(renderTarget, "laser.png", 0, 0, 1, 1);
 	Player UpgradedLaser(renderTarget, "upgradedlaser.png", 0, 0, 1, 1);
 	Bullet ammo[4];
 	Bullet normalBullet();
 	Bullet otherBullet;
-	Bullet bullet(renderTarget, "ball.png", 2, 2, 4, 4);
+	Bullet bullet(renderTarget, "ball.png", 0, 0, 1, 1);
 	int nz = 0;
 
 
@@ -281,6 +282,9 @@ int main(int argc, char** argv)
 	SDL_Surface* nocoincsSurface = TTF_RenderText_Solid(text, "Not enough coins!", White);
 	SDL_Texture* nocoinsTexture = SDL_CreateTextureFromSurface(renderTarget, nocoincsSurface);
 
+
+
+
 	while (isRunning)
 	{
 	//	std::cout << "BKEYA: " << bKeyA << std::endl;
@@ -290,8 +294,10 @@ int main(int argc, char** argv)
 		currentTime = SDL_GetTicks();
 		delta = (currentTime - prevTime) / 1000.0f;
 		
-	
-		
+		std::cout << "Zombie: " << zombie1.GetOriginX() << std::endl;
+
+		std::cout << "Ammo: " << ammo[0].GetOriginX() << std::endl;
+		std::cout << "Bullet: " << bullet.GetOriginX() << std::endl;
 		SDL_RenderClear(renderTarget);
 
 		if (inMenu == true)
@@ -648,12 +654,12 @@ int main(int argc, char** argv)
 			{
 
 				bullet.handleInput(ammo, player1);
+			
+				testovBullet.Draw(renderTarget);
 			}
 
-			
-		//	collision.playerBulletCollision(ammo, zombie1);
-			//collision.tester(ammo, zombie1);
-			collision.oldTest(ammo, zombie1);
+			collision.playerBulletCollision(ammo, zombie1);
+
 
 			bullet.drawBulletche(renderTarget, ammo);
 		

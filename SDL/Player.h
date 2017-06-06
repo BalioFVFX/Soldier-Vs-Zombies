@@ -74,8 +74,11 @@ public:
 	SDL_Rect positionRect;
 	int GetOriginX();
 	int GetOriginY();
-private:
+	int frameWidth, frameHeight;
 	SDL_Rect cropRect;
+
+private:
+	
 	SDL_Texture *texture;
 	int originX;
 	int originY;
@@ -98,7 +101,7 @@ private:
 	
 	float moveSpeed;
 	float frameCounter;
-	int frameWidth, frameHeight;
+
 	bool isActive;
 	bool isSecondActive;
 	bool isSecondMoving = true;

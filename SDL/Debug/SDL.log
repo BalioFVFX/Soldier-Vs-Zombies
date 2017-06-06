@@ -1,8 +1,15 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SDL TEST.vcxproj, Soldier Vs Zombies 2.2.vcxproj, Soldier Vs Zombies 2.9.vcxproj, Soldier Vs Zombies 3.0.vcxproj, Soldiers vs Zombies 1.9.vcxproj, Soldiers Vs Zombies 2.0.vcxproj, Soldiers Vs Zombies 2.2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Source.cpp
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(120): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(901): warning C4018: '>': signed/unsigned mismatch
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(888): warning C4018: '>': signed/unsigned mismatch
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(112): warning C4390: ';': empty controlled statement found; is this the intent?
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(120): warning C4930: 'Bullet normalBullet(void)': prototyped function not called (was a variable definition intended?)
+  Collision.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(120): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Bullet.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(120): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Zombie.cpp
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Debug\Soldier Vs Zombies 3.5.exe
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Debug\Soldier Vs Zombies 3.5.pdb (Full PDB)

@@ -113,14 +113,12 @@ int main(int argc, char** argv)
 	
 	//Player overall:
 	Player player1(renderTarget, "soldier.png", 50, 400, 9, 4); //Position and croping..
-	Player testovBullet(renderTarget, "ball.png", 200, 400, 1, 1);
+	//Player testovBullet(renderTarget, "ball.png", 200, 400, 1, 1); //Thats how i found X / Y / Radius = 12 (Get Functions For The Bullet)
 	Player Laser(renderTarget, "laser.png", 0, 0, 1, 1);
 	Player UpgradedLaser(renderTarget, "upgradedlaser.png", 0, 0, 1, 1);
 	Bullet ammo[4];
-	Bullet normalBullet();
-	Bullet otherBullet;
 	Bullet bullet(renderTarget, "ball.png", 0, 0, 1, 1);
-	int nz = 0;
+
 
 
 	//Zombie Overall:
@@ -287,17 +285,10 @@ int main(int argc, char** argv)
 
 	while (isRunning)
 	{
-	//	std::cout << "BKEYA: " << bKeyA << std::endl;
-		//std::cout << "aTick: " << aTick << std::endl;
-		aTick++;
+		aTick++; //For the bullet
 		prevTime = currentTime;
 		currentTime = SDL_GetTicks();
 		delta = (currentTime - prevTime) / 1000.0f;
-		
-		std::cout << "Zombie: " << zombie1.GetOriginX() << std::endl;
-
-		std::cout << "Ammo: " << ammo[0].GetOriginX() << std::endl;
-		std::cout << "Bullet: " << bullet.GetOriginX() << std::endl;
 		SDL_RenderClear(renderTarget);
 
 		if (inMenu == true)
@@ -307,7 +298,6 @@ int main(int argc, char** argv)
 			multiPlayerButton.shopButton(renderTarget);
 			settingsButton.settingsButton(renderTarget);
 			exitButton.exitButton(renderTarget);
-			//Load the background music 
 			
 			/***************************************SHOWING THE MENU******************************************/
 
@@ -377,6 +367,7 @@ int main(int argc, char** argv)
 				//Get the mouse offsets
 				x = ev.motion.x;
 				y = ev.motion.y;
+				//Print mouse X / Y coordinates 
 				std::cout << "X: " << ev.motion.x << std::endl;
 				std::cout << "y: " << ev.motion.y << std::endl;
 				//If the mouse is over the button
@@ -652,16 +643,13 @@ int main(int argc, char** argv)
 	
 			if (bKeyA == 1 && aTick % 10 == 1)
 			{
-
-				bullet.handleInput(ammo, player1);
-			
-				testovBullet.Draw(renderTarget);
+				bullet.HandleInput(ammo, player1);
 			}
 
-			collision.playerBulletCollision(ammo, zombie1);
+			collision.PlayerBulletToZombieCollision(ammo, zombie1);
 
 
-			bullet.drawBulletche(renderTarget, ammo);
+			bullet.Draw(renderTarget, ammo);
 		
 
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
@@ -866,15 +854,10 @@ int main(int argc, char** argv)
 			//Keyboard events
 			if (inGame == true)
 			{
-				//std::cout << "Ammo - " << bullet.ammo << std::endl;
-
-				//std::cout << "Player x - " << player1.positionRect.x << std::endl;
-				//std::cout << "Player y - " << player1.positionRect.y << std::endl;
 				keyState = SDL_GetKeyboardState(NULL);
 				player1.Update(delta, keyState, ev);
 				if (regularZombieUpdate == true)
 				{
-					//zombie.UpdateZombie(delta, keyState, ev, zombie);
 					zombie1.Update(zombie1, delta, lastTime, currentTime);
 					if (spawn2ndZombie == true)
 					{

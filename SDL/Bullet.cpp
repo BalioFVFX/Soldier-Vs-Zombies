@@ -36,6 +36,7 @@ Bullet::~Bullet()
 {
 }
 
+//Not begin used?
 void Bullet::init()
 {
 	Bullet * bullet = new Bullet[4];
@@ -47,7 +48,7 @@ void Bullet::init()
 	}
 }
 
-void Bullet::handleInput(Bullet bullet[], Player & player)
+void Bullet::HandleInput(Bullet bullet[], Player & player)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -64,7 +65,7 @@ void Bullet::handleInput(Bullet bullet[], Player & player)
 
 }
 
-void Bullet::drawBulletche(SDL_Renderer * renderTarget, Bullet bullet[])
+void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[])
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -72,7 +73,6 @@ void Bullet::drawBulletche(SDL_Renderer * renderTarget, Bullet bullet[])
 		{
 			bullet[i].b.x += 2;
 			SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
-			ammo = i;
 		}
 		if (bullet[i].b.x > 640)
 		{
@@ -86,7 +86,9 @@ void Bullet::drawBulletche(SDL_Renderer * renderTarget, Bullet bullet[])
 
 int Bullet::GetOriginX()
 {
-	return b.x + 12;
+	return b.x + 12; //Problem..
+					//First made a object from Player class for the bullet, then had calculation framewidth /2 , frameheight / 2, radius / 2, So we have 12
+					//Bullet constructor is not able to make the calculation.. ?
 }
 
 int Bullet::GetOriginY()
@@ -99,7 +101,3 @@ int Bullet::GetRadius()
 	return 12;
 }
 
-int Bullet::GetNumber()
-{
-	return number;
-}

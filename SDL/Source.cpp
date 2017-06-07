@@ -622,12 +622,6 @@ int main(int argc, char** argv)
 		
 			player1.Draw(renderTarget);  //Draw first player
 			zombieText.TextDraw(renderTarget, text);
-			//Draw the bullets somewhere on the screen:
-		//	_bullet[0].drawBulletBullet(renderTarget); // Render the bullet - Works;
-			//_bullet[0].bulletPosRect.x = 220; //Set the position of the bullet - Works;
-
-			//_bullet[1].drawBulletBullet(renderTarget); //Not working (I can't render second bullet on the screen)
-	
 
 			SDL_RenderCopy(renderTarget, CoinsTextTexture, NULL, &CoinsTextRect);
 			
@@ -645,8 +639,10 @@ int main(int argc, char** argv)
 				bullet.HandleInput(ammo, player1);
 			}
 
-			collision.PlayerBulletToZombieCollision(ammo, zombie1);
-
+			if (collision.PlayerBulletToZombieCollision(ammo, zombie1, zombieText))
+			{
+				zombieText.UpdateText(renderTarget, text, zombie1);
+			}
 
 			bullet.Draw(renderTarget, ammo);
 		
@@ -783,27 +779,7 @@ int main(int argc, char** argv)
 			SDL_RenderCopy(renderTarget, ZombieHealthTextTexture, NULL, &healthTextRect);
 			SDL_RenderCopy(renderTarget, CoinTexture, NULL, &CoinsRect);
 
-			/***************************************BULLET DETECTION******************************************/
-
-		
-
-			/***************************************BULLET DETECTION******************************************/
-
-			/***************************************LASER DETECTION******************************************/
-
-
-		/***************************************LASER DETECTION******************************************/
 }
-		
-
-
-		//Second Zombie Detection
-		/***************************************BULLET DETECTION2ND******************************************/
-
-		/***************************************BULLET DETECTION2ND******************************************/
-
-		/***************************************LASER DETECTION2ND******************************************/
-	
 
 		//Upgraded Laser 3RD
 /*
@@ -811,15 +787,6 @@ int main(int argc, char** argv)
 		{
 			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
 			explosion.drawExplosion(renderTarget, zombie3rd);
-			zombieHealth -= 12;
-
-			//Damage
-			zombiehealthSTREAM.str("");
-			zombiehealthSTREAM << zombieHealth;
-
-			ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
 
 			//Coins
 			coinsFromFille++;

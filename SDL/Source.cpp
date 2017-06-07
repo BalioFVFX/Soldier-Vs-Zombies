@@ -169,6 +169,8 @@ int main(int argc, char** argv)
 	Menu shopText(renderTarget, "", 0, 0);
 	Menu UpgradedLaserInShop(renderTarget, "upgradedlaser.png", 0, 0);
 
+	Text zombieText;
+
 	Bullet * _bullet = new Bullet(renderTarget, "bullet.png", 0 , 0, 1 ,1);
 
 	bool isRunning = true;
@@ -219,7 +221,7 @@ int main(int argc, char** argv)
 	SDL_Surface * ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
 	SDL_Texture * ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
 
-	SDL_Surface* ZombieHealthTextSurface = TTF_RenderText_Solid(text, "Zombie Health::", White);
+	SDL_Surface* ZombieHealthTextSurface = TTF_RenderText_Solid(text, "Zombie Healthche::", White);
 	SDL_Texture* ZombieHealthTextTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthTextSurface);
 
 
@@ -279,9 +281,6 @@ int main(int argc, char** argv)
 	
 	SDL_Surface* nocoincsSurface = TTF_RenderText_Solid(text, "Not enough coins!", White);
 	SDL_Texture* nocoinsTexture = SDL_CreateTextureFromSurface(renderTarget, nocoincsSurface);
-
-
-
 
 	while (isRunning)
 	{
@@ -622,7 +621,7 @@ int main(int argc, char** argv)
 			enviroment.drawEnviroment(renderTarget);
 		
 			player1.Draw(renderTarget);  //Draw first player
-	
+			zombieText.TextDraw(renderTarget, text);
 			//Draw the bullets somewhere on the screen:
 		//	_bullet[0].drawBulletBullet(renderTarget); // Render the bullet - Works;
 			//_bullet[0].bulletPosRect.x = 220; //Set the position of the bullet - Works;
@@ -779,7 +778,7 @@ int main(int argc, char** argv)
 				gameWin.win(renderTarget);
 				secondfirework.win(renderTarget);
 			}
-	
+			
 			SDL_RenderCopy(renderTarget, ZombieHealthTexture, NULL, &healthRect);
 			SDL_RenderCopy(renderTarget, ZombieHealthTextTexture, NULL, &healthTextRect);
 			SDL_RenderCopy(renderTarget, CoinTexture, NULL, &CoinsRect);

@@ -71,7 +71,7 @@ void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[])
 	{
 		if (bullet[i].alive)
 		{
-			bullet[i].b.x += 2;
+			bullet[i].b.x += 5;
 			SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
 		}
 		if (bullet[i].b.x > 640)

@@ -18,6 +18,9 @@ public:
 	int GetOriginY();
 	int GetRadius();
 	bool checkCollision(Bullet bullet);
+	SDL_Texture *texture;
+	bool alive = false;
+	int health = 100;
 private:
 	int originX;
 	int originY;
@@ -25,7 +28,7 @@ private:
 	
 	SDL_Rect zombieBulletRect;
 	SDL_Rect cropRect;
-	SDL_Texture *texture;
+	
 	SDL_Surface *surface;
 	float moveSpeed;
 	float frameCounter;
@@ -36,7 +39,6 @@ private:
 	int textureWidth;
 	bool running = true;
 	bool fired = false;
-	bool alive;
 	bool moving = true;
 };
 

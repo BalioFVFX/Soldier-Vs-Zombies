@@ -66,41 +66,44 @@ void Zombie::Update(Zombie & zombie, float delta, unsigned int lastTime, int cur
 {
 	isActive = true;
 	moveSpeed = 1;
-	if (currentTime > lastTime)
+	if (alive == true)
 	{
-
-		lastTime = currentTime;
-
-		if (moving == true)
+		if (currentTime > lastTime)
 		{
-			cropRect.y = frameHeight;
-			zombie.zombieRect.x -= moveSpeed * delta;
 
+			lastTime = currentTime;
+
+			if (moving == true)
+			{
+				cropRect.y = frameHeight;
+				zombie.zombieRect.x -= moveSpeed * delta;
+
+			}
+			else
+			{
+				isActive = false;
+			}
+		}
+
+		if (isActive)
+		{
+			frameCounter += delta;
+
+			if (frameCounter >= 0.25f)
+			{
+				frameCounter = 0;
+				cropRect.x += frameWidth;
+				if (cropRect.x >= textureWidth)
+				{
+					cropRect.x = 0;
+				}
+			}
 		}
 		else
 		{
-			isActive = false;
-		}
-	}
-
-	if (isActive)
-	{
-		frameCounter += delta;
-
-		if (frameCounter >= 0.25f)
-		{
 			frameCounter = 0;
-			cropRect.x += frameWidth;
-			if (cropRect.x >= textureWidth)
-			{
-				cropRect.x = 0;
-			}
+			cropRect.x = frameWidth;
 		}
-	}
-	else
-	{
-		frameCounter = 0;
-		cropRect.x = frameWidth;
 	}
 }
 

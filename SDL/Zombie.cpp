@@ -4,47 +4,59 @@
 
 Zombie::Zombie(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY)
 {
-	surface = IMG_Load(filePath.c_str());
+	if (alive == false)
+	{
+		delete this;
+	}
+	else
+	{
+		surface = IMG_Load(filePath.c_str());
 
-	texture = SDL_CreateTextureFromSurface(renderTarget, surface);
+		texture = SDL_CreateTextureFromSurface(renderTarget, surface);
 
-	SDL_FreeSurface(surface);
+		SDL_FreeSurface(surface);
 
-	SDL_QueryTexture(texture, NULL, NULL, &cropRect.w, &cropRect.h);
-
-
-	zombieRect.x = x;
-	zombieRect.y = y;
-
-
-	zombieBulletRect.x = 565;
-	zombieBulletRect.y = 370;
-	zombieBulletRect.w = 40;
-	zombieBulletRect.h = 40;
+		SDL_QueryTexture(texture, NULL, NULL, &cropRect.w, &cropRect.h);
 
 
-	textureWidth = cropRect.w;
+		zombieRect.x = x;
+		zombieRect.y = y;
 
-	cropRect.w /= framesX;
-	cropRect.h /= framesY;
 
-	frameWidth = zombieRect.w = cropRect.w;
-	frameHeight = zombieRect.h = cropRect.h;
+		zombieBulletRect.x = 565;
+		zombieBulletRect.y = 370;
+		zombieBulletRect.w = 40;
+		zombieBulletRect.h = 40;
 
-	originX = frameWidth / 2;
-	originY = frameHeight / 2;
-	radius = frameWidth / 2;
 
-	isActive = false;
-	isSecondActive = false;
+		textureWidth = cropRect.w;
 
-	moveSpeed = 200.0f;
+		cropRect.w /= framesX;
+		cropRect.h /= framesY;
 
+		frameWidth = zombieRect.w = cropRect.w;
+		frameHeight = zombieRect.h = cropRect.h;
+
+		originX = frameWidth / 2;
+		originY = frameHeight / 2;
+		radius = frameWidth / 2;
+
+		isActive = false;
+		isSecondActive = false;
+
+		moveSpeed = 200.0f;
+	}
+	
 }
 
 
 Zombie::~Zombie()
 {
+	if (alive == false)
+	{
+		std::cout << "Destructor!";
+	}
+
 }
 
 Zombie::Zombie()
@@ -54,9 +66,11 @@ Zombie::Zombie()
 
 void Zombie::Draw(SDL_Renderer *renderTarget)
 {
-	alive = true;
+	if (alive == false)
+	{
 
-	if (alive == true)
+	}
+	else
 	{
 		SDL_RenderCopy(renderTarget, texture, &cropRect, &zombieRect);
 	}
@@ -64,10 +78,11 @@ void Zombie::Draw(SDL_Renderer *renderTarget)
 
 void Zombie::Update(Zombie & zombie, float delta, unsigned int lastTime, int currentTime)
 {
-	isActive = true;
-	moveSpeed = 1;
 	if (alive == true)
 	{
+	isActive = true;
+	moveSpeed = 1;
+	
 		if (currentTime > lastTime)
 		{
 
@@ -121,19 +136,3 @@ int Zombie::GetRadius()
 {
 	return radius;
 }
-
-/*bool Zombie::checkCollision(Bullet bullet)
-{
-	if (sqrt(pow(bullet.GetOriginX() - GetOriginX(), 2) + pow(bullet.GetOriginY() - GetOriginY(), 2)) >= bullet.GetRadius() + GetRadius())
-	{
-		return false;
-	}
-
-	else {
-		zombieRect.x = 300;
-		return true;
-	}
-	
-}
-
-*/

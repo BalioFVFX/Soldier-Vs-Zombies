@@ -10,7 +10,7 @@
 class Text
 {
 public:
-	Text();
+	Text(SDL_Renderer * renderTarget, TTF_Font *text);
 	~Text();
 	SDL_Color White = { 255, 255, 255 };
 	void TextDraw(SDL_Renderer * renderTarget, TTF_Font *text);
@@ -18,6 +18,7 @@ public:
 	int chislo = 100;
 
 private:
+	TTF_Font * text;
 	SDL_Rect healthTextRectche;
 	SDL_Surface* ZombieHealthTextSurfaceche;
 	SDL_Texture* ZombieHealthTextTextureche;

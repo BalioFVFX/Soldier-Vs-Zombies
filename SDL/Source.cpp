@@ -169,7 +169,7 @@ int main(int argc, char** argv)
 	Menu shopText(renderTarget, "", 0, 0);
 	Menu UpgradedLaserInShop(renderTarget, "upgradedlaser.png", 0, 0);
 
-	Text zombieText;
+	Text zombieText(renderTarget, text);
 
 	Bullet * _bullet = new Bullet(renderTarget, "bullet.png", 0 , 0, 1 ,1);
 
@@ -281,6 +281,7 @@ int main(int argc, char** argv)
 	
 	SDL_Surface* nocoincsSurface = TTF_RenderText_Solid(text, "Not enough coins!", White);
 	SDL_Texture* nocoinsTexture = SDL_CreateTextureFromSurface(renderTarget, nocoincsSurface);
+
 
 	while (isRunning)
 	{
@@ -619,12 +620,13 @@ int main(int argc, char** argv)
 				isRunning = false;
 			}
 			enviroment.drawEnviroment(renderTarget);
-		
+
 			player1.Draw(renderTarget);  //Draw first player
+			zombie1.Draw(renderTarget);
 			zombieText.TextDraw(renderTarget, text);
 
 			SDL_RenderCopy(renderTarget, CoinsTextTexture, NULL, &CoinsTextRect);
-			
+
 			SDL_RenderCopy(renderTarget, PlayerHealthTexture, NULL, &PlayerHealthRect);
 			SDL_RenderCopy(renderTarget, PlayerTextHealthTexture, NULL, &PlayerTextHealthRect);
 			SDL_SetRenderDrawColor(renderTarget, 255, 255, 255, SDL_ALPHA_OPAQUE);
@@ -632,18 +634,18 @@ int main(int argc, char** argv)
 			SDL_RenderDrawLine(renderTarget, 300, 240, 340, 240);
 			SDL_RenderDrawLine(renderTarget, 340, 240, 320, 200);
 
-			
-	
+
+
 			if (bKeyA == 1 && aTick % 10 == 1)
 			{
 				bullet.HandleInput(ammo, player1);
 			}
 
-			if (collision.PlayerBulletToZombieCollision(ammo, zombie1, zombieText))
-			{
-				zombieText.UpdateText(renderTarget, text, zombie1);
-			}
+			collision.PlayerBulletToZombieCollision(ammo, zombie1);
+		
 
+			zombieText.UpdateText(renderTarget, text, zombie1);
+		
 			bullet.Draw(renderTarget, ammo);
 		
 
@@ -738,9 +740,7 @@ int main(int argc, char** argv)
 			}
 
 
-
-				zombie1.Draw(renderTarget);
-			
+	
 
 			if (spawn2ndZombie && isPaused == false)
 			{
@@ -827,11 +827,11 @@ int main(int argc, char** argv)
 					zombie1.Update(zombie1, delta, lastTime, currentTime);
 					if (spawn2ndZombie == true)
 					{
-						zombie2.Update(zombie2, delta, lastTime, currentTime);
+						//zombie2.Update(zombie2, delta, lastTime, currentTime);
 					}
 					if (spawn3rdZombie == true)
 					{
-						zombie3.Update(zombie3, delta, lastTime, currentTime);
+						//zombie3.Update(zombie3, delta, lastTime, currentTime);
 					}
 
 				}
@@ -864,12 +864,12 @@ int main(int argc, char** argv)
 			
 				if (spawn2ndZombie == true)
 				{
-					zombie2.Update(zombie2, delta, lastTime, currentTime);
+					//zombie2.Update(zombie2, delta, lastTime, currentTime);
 				}
 
 				if (spawn3rdZombie == true)
 				{
-					zombie3.Update(zombie3, delta, lastTime, currentTime);
+					//zombie3.Update(zombie3, delta, lastTime, currentTime);
 				}
 
 				if (isgamewin == true)
@@ -949,7 +949,6 @@ int main(int argc, char** argv)
 					break;
 					//Ultimate testing button :D
 				case SDLK_r:
-					testbool = true;
 					break;
 				case SDLK_ESCAPE:
 					exitGame = true;
@@ -990,7 +989,7 @@ int main(int argc, char** argv)
 		}
 
 }
-	
+
 	SDL_DestroyWindow(window);
 	window = nullptr;
 

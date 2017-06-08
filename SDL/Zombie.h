@@ -19,7 +19,7 @@ public:
 	int GetRadius();
 	bool checkCollision(Bullet bullet);
 	SDL_Texture *texture;
-	bool alive = false;
+	bool alive = true;
 	int health = 100;
 private:
 	int originX;

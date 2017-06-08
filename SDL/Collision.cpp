@@ -19,6 +19,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 			bullet[0].b.x = 9999;
 			bullet[0].alive = false;
 			zombie.health -= 10;
+			zombie.hit = true;
 
 		}
 		if (sqrt(pow(bullet[1].GetOriginX() - zombie.GetOriginX(), 2) + pow(bullet[1].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[1].GetRadius() + zombie.GetRadius())
@@ -32,6 +33,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 			bullet[1].b.x = 9999;
 			bullet[1].alive = false;
 			zombie.health -= 10;
+			zombie.hit = true;
 		}
 
 		if (sqrt(pow(bullet[2].GetOriginX() - zombie.GetOriginX(), 2) + pow(bullet[2].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[2].GetRadius() + zombie.GetRadius())
@@ -45,6 +47,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 			bullet[2].b.x = 9999;
 			bullet[2].alive = false;
 			zombie.health -= 10;
+			zombie.hit = true;
 		}
 
 		if (sqrt(pow(bullet[3].GetOriginX() - zombie.GetOriginX(), 2) + pow(bullet[3].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[3].GetRadius() + zombie.GetRadius())
@@ -58,6 +61,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 			bullet[3].b.x = 9999;
 			bullet[3].alive = false;
 			zombie.health -= 10;
+			zombie.hit = true;
 		}
 		if (zombie.health <= 0)
 		{

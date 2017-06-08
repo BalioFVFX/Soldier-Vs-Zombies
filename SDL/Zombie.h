@@ -17,10 +17,10 @@ public:
 	int GetOriginX();
 	int GetOriginY();
 	int GetRadius();
-	bool checkCollision(Bullet bullet);
 	SDL_Texture *texture;
 	bool alive = true;
 	int health = 100;
+	bool hit = true;
 private:
 	int originX;
 	int originY;

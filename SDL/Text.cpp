@@ -35,12 +35,16 @@ void Text::TextDraw(SDL_Renderer * renderTarget, TTF_Font * text)
 
 void Text::UpdateText(SDL_Renderer * renderTarget, TTF_Font * text, Zombie &zombie)
 {
-	if (zombie.alive == true)
+	if (zombie.hit == true)
 	{
-		zombiehealthSTREAM.str("");
-		zombiehealthSTREAM << zombie.health;
+		if (zombie.alive == true)
+		{
+			zombiehealthSTREAM.str("");
+			zombiehealthSTREAM << zombie.health;
 
-		ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-		ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
+			ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
+			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
+			zombie.hit = false;
+		}
 	}
 }

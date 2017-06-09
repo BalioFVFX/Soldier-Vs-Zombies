@@ -27,13 +27,6 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 	firework_Rect.w = 240;
 	firework_Rect.h = 240;
 	
-	
-	zombieBullet_Rect.x = 565;
-	zombieBullet_Rect.y = 370;
-	zombieBullet_Rect.w = 40;
-	zombieBullet_Rect.h = 40;
-
-
 	secondZombieRect.x = 2242;
 	secondZombieRect.y = 4444;
 	secondZombieRect.w = 100;
@@ -207,7 +200,7 @@ void Player::Update(float delta, const Uint8 *keystate, SDL_Event ev)
 	}
 
 }
-
+/**
 bool Player::IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev, Player & p)
 {
 
@@ -228,7 +221,7 @@ bool Player::IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev
 	}
 	return true;
 }
-
+*/
 int Player::GetOriginX()
 {
 	return originX;
@@ -461,24 +454,7 @@ void Player::drawUpgradedLaser(SDL_Renderer *renderBullet, Player &p, const Uint
 
 	SDL_RenderCopy(renderBullet, texture, NULL, &upgradedLaser_Rect);
 }
-
-void Player::DrawBullet4Zombie(SDL_Renderer * renderBullet, Player & p, const Uint8 * keystate)
-{
-	currentTime = SDL_GetTicks();
-
-	if (currentTime > lastTime + 0) {
-		lastTime = currentTime;
-		zombieBullet_Rect.x -= 20;
-	}
-	if (zombieBullet_Rect.x <= -752)
-	{
-		zombieBullet_Rect.x = p.positionRect.x;
-		zombieBullet_Rect.y = p.positionRect.y + 20;
-	}
-
-	SDL_RenderCopy(renderBullet, texture, NULL, &zombieBullet_Rect);
-}
-
+/*
 void Player::DrawBullet4ZombieVer2(SDL_Renderer * renderBullet, Player & p, const Uint8 * keystate)
 {
 	currentTime = SDL_GetTicks();
@@ -495,7 +471,7 @@ void Player::DrawBullet4ZombieVer2(SDL_Renderer * renderBullet, Player & p, cons
 
 	SDL_RenderCopy(renderBullet, texture, NULL, &zombieBullet_Rect);
 }
-
+*/
 
 bool Player::IntersectwithBullet(Player &p)
 {
@@ -644,7 +620,7 @@ void Player::drawExplosionFromZombie(SDL_Renderer * renderTarget, Player &p)
 	SDL_RenderCopy(renderTarget, texture, NULL, &explosion);
 }
 
-
+/*
 bool Player::IntersectwithZombieBullet(Player & p)
 {
 
@@ -662,8 +638,8 @@ bool Player::IntersectwithZombieBullet(Player & p)
 	}
 	return true;
 }
-
-
+*/
+/**
 bool Player::IntersectwithZombieBulletVer2(Player & p)
 {
 
@@ -681,3 +657,4 @@ bool Player::IntersectwithZombieBulletVer2(Player & p)
 	}
 	return true;
 }
+*/

@@ -42,7 +42,6 @@ public:
 	bool IntersectwithZombieBulletVer2(Player & p);
 
 	//Zombie Drawing Functions
-	void DrawBullet4Zombie(SDL_Renderer * renderBullet, Player &p, const Uint8 *keystate);
 	void DrawBullet4ZombieVer2(SDL_Renderer * renderBullet, Player &p, const Uint8 *keystate);
 
 	//Zombies Updating
@@ -92,7 +91,6 @@ private:
 	
 	SDL_Rect zombieRect;
 	SDL_Rect secondZombieRect;
-	SDL_Rect zombieBullet_Rect;
 	
 	//Player building
 	SDL_Rect WallRect;

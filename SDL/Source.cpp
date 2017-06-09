@@ -123,6 +123,7 @@ int main(int argc, char** argv)
 
 	//Zombie Overall:
 	Zombie zombie1(renderTarget, "zombie1.png", 600, 400, 4, 4);
+	Zombie zombieBullet(renderTarget, "zombiebullet.png", 0, 0, 1, 1);
 	Zombie zombie2(renderTarget, "zombie2.png", 600, 400, 4, 4);
 	Zombie zombie3(renderTarget, "zombie3.png", 600, 400, 4, 4);
 
@@ -645,6 +646,8 @@ int main(int argc, char** argv)
 		
 
 			zombieText.UpdateText(renderTarget, text, zombie1);
+
+			zombieBullet.Attack(renderTarget, zombie1);
 		
 			bullet.Draw(renderTarget, ammo);
 		
@@ -685,7 +688,7 @@ int main(int argc, char** argv)
 
 			}
 
-			
+		/*	
 			if (zombieDrawBullet.IntersectwithWall(delta, keyState, ev, drawTheWall)) 
 				{
 					timesWereHitted += 1;
@@ -738,7 +741,7 @@ int main(int argc, char** argv)
 					inShop = false;
 				}
 			}
-
+			*/
 
 	
 

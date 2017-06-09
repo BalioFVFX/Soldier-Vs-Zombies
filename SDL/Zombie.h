@@ -13,6 +13,7 @@ public:
 	~Zombie();
 	void Draw(SDL_Renderer * renderTarget);
 	void Update(Zombie & zombie, float delta, unsigned int lastTime, int currentTime);
+	void Attack(SDL_Renderer * renderTarget, Zombie & zombie);
 	SDL_Rect zombieRect;
 	int GetOriginX();
 	int GetOriginY();
@@ -40,5 +41,7 @@ private:
 	bool running = true;
 	bool fired = false;
 	bool moving = true;
+
+	unsigned int lastTime = 0, currentTime;
 };
 

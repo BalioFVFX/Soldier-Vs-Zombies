@@ -23,8 +23,8 @@ Zombie::Zombie(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 		zombieRect.y = y;
 
 
-		zombieBulletRect.x = 565;
-		zombieBulletRect.y = 370;
+		zombieBulletRect.x = zombieRect.x;
+		zombieBulletRect.y = zombieRect.y + 20;
 		zombieBulletRect.w = 40;
 		zombieBulletRect.h = 40;
 
@@ -121,6 +121,25 @@ void Zombie::Update(Zombie & zombie, float delta, unsigned int lastTime, int cur
 		}
 	}
 }
+
+void Zombie::Attack(SDL_Renderer * renderTarget, Zombie & zombie)
+{
+		currentTime = SDL_GetTicks();
+
+		if (currentTime > lastTime + 0) 
+		{
+			lastTime = currentTime;
+			zombieBulletRect.x -= 10;
+		}
+		if (zombieBulletRect.x <= -752)
+		{
+			zombieBulletRect.x = zombie.zombieRect.x;
+			zombieBulletRect.y = zombie.zombieRect.y + 20;
+		}
+
+		SDL_RenderCopy(renderTarget, texture, NULL, &zombieBulletRect);
+}
+
 
 int Zombie::GetOriginX()
 {

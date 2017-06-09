@@ -6,61 +6,67 @@
 
 Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY)
 {
-	surface = IMG_Load(filePath.c_str());
-	
-	texture = SDL_CreateTextureFromSurface(renderTarget, surface);
+	if (alive == false)
+	{
+		delete this;
+	}
+	else
+	{
+		surface = IMG_Load(filePath.c_str());
 
-	SDL_FreeSurface(surface);
+		texture = SDL_CreateTextureFromSurface(renderTarget, surface);
 
-	SDL_QueryTexture(texture, NULL, NULL, &cropRect.w, &cropRect.h);
+		SDL_FreeSurface(surface);
+
+		SDL_QueryTexture(texture, NULL, NULL, &cropRect.w, &cropRect.h);
 
 
-	positionRect.x = x;
-	positionRect.y = y;
+		positionRect.x = x;
+		positionRect.y = y;
 
-	WallRect.w = 50;
-	WallRect.h = 50;
-	
+		WallRect.w = 50;
+		WallRect.h = 50;
 
-	firework_Rect.x = x;
-	firework_Rect.y = y;
-	firework_Rect.w = 240;
-	firework_Rect.h = 240;
-	
-	secondZombieRect.x = 2242;
-	secondZombieRect.y = 4444;
-	secondZombieRect.w = 100;
-	secondZombieRect.h = 100;
 
-	laser_rect.x = 50;
-	laser_rect.y = 400;
-	laser_rect.w = 70;
-	laser_rect.h = 20;
+		firework_Rect.x = x;
+		firework_Rect.y = y;
+		firework_Rect.w = 240;
+		firework_Rect.h = 240;
 
-	upgradedLaser_Rect.x = 50;
-	upgradedLaser_Rect.y = 400;
-	upgradedLaser_Rect.w = 70;
-	upgradedLaser_Rect.h = 20;
+		secondZombieRect.x = 2242;
+		secondZombieRect.y = 4444;
+		secondZombieRect.w = 100;
+		secondZombieRect.h = 100;
 
-	explosion.x = x;
-	explosion.y = y;
-	explosion.w = 40;
-	explosion.h = 40;
+		laser_rect.x = 50;
+		laser_rect.y = 400;
+		laser_rect.w = 70;
+		laser_rect.h = 20;
 
-	textureWidth = cropRect.w;
+		upgradedLaser_Rect.x = 50;
+		upgradedLaser_Rect.y = 400;
+		upgradedLaser_Rect.w = 70;
+		upgradedLaser_Rect.h = 20;
 
-	cropRect.w /= framesX;
-	cropRect.h /= framesY;
+		explosion.x = x;
+		explosion.y = y;
+		explosion.w = 40;
+		explosion.h = 40;
 
-	frameWidth = positionRect.w = cropRect.w;
-	frameHeight = positionRect.h = cropRect.h;
+		textureWidth = cropRect.w;
 
-	originX = frameWidth / 2;
-	originY = frameHeight / 2;
-	radius = frameWidth / 2;
+		cropRect.w /= framesX;
+		cropRect.h /= framesY;
 
-	isActive = false;
-	isSecondActive = false;
+		frameWidth = positionRect.w = cropRect.w;
+		frameHeight = positionRect.h = cropRect.h;
+
+		originX = frameWidth / 2;
+		originY = frameHeight / 2;
+		radius = frameWidth / 2;
+
+		isActive = false;
+		isSecondActive = false;
 
 
 
@@ -72,11 +78,11 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 		keys[6] = SDL_SCANCODE_Q;
 		keys[7] = SDL_SCANCODE_E;
 		keys[8] = SDL_SCANCODE_SPACE;
-	 
 
 
-	moveSpeed = 200.0f;
 
+		moveSpeed = 200.0f;
+	}
 }
 
 Player::Player()
@@ -95,111 +101,116 @@ Player::~Player()
 
 void Player::Draw(SDL_Renderer *renderTarget)
 {
-	SDL_RenderCopy(renderTarget, texture, &cropRect, &positionRect);
+	if (alive == true)
+	{
+		SDL_RenderCopy(renderTarget, texture, &cropRect, &positionRect);
+	}
 }
 
 
 
 void Player::Update(float delta, const Uint8 *keystate, SDL_Event ev)
 {
-	isActive = true;
-	if (keystate[keys[0]])
+	if (alive == true)
 	{
-		if (positionRect.y <= 372)
+		isActive = true;
+		if (keystate[keys[0]])
 		{
-			
-		}
-		else
-		{
-			cropRect.y = 0;
-			positionRect.y -= moveSpeed * delta;
-			cropRect.y = 3;
-			getPlayerY - 4;
+			if (positionRect.y <= 372)
+			{
 
+			}
+			else
+			{
+				cropRect.y = 0;
+				positionRect.y -= moveSpeed * delta;
+				cropRect.y = 3;
+				getPlayerY - 4;
+
+			}
 		}
-	}
-	else if (keystate[keys[1]])
-	{
-		if (positionRect.y >= 417)
+		else if (keystate[keys[1]])
 		{
-			
+			if (positionRect.y >= 417)
+			{
+
+			}
+			else
+			{
+				cropRect.y = frameHeight * 2;
+				positionRect.y += moveSpeed * delta;
+				cropRect.y = frameHeight * 2;
+			}
 		}
-		else
+		else if (keystate[keys[2]])
 		{
-			cropRect.y = frameHeight * 2;
-			positionRect.y += moveSpeed * delta;
-			cropRect.y = frameHeight * 2;
+			if (positionRect.x <= (-21))
+			{
+
+			}
+			else
+			{
+				cropRect.y = frameHeight;
+				positionRect.x -= moveSpeed * delta;
+			}
 		}
-	}
-	else if (keystate[keys[2]])
-	{
-		if (positionRect.x <= (-21))
+		else if (keystate[keys[3]])
 		{
-			
-		}
-		else
-		{
-			cropRect.y = frameHeight;
-			positionRect.x -= moveSpeed * delta;
-		}
-	}
-	else if (keystate[keys[3]])
-	{
-		
+
 			cropRect.y = frameHeight;
 			positionRect.x += moveSpeed* delta;
 			cropRect.y = frameHeight * 3;
-	}                       
-
-
-	else
-	{
-		isActive = false;
-	}
-
-	if (positionRect.y <= 300)
-	{
-		falling = true;
-	}
-
-	if (positionRect.y >= 400)
-	{
-		falling = false;
-	}
-
-	if (positionRect.y > 0 && positionRect.y < 420) 
-	{
-		if (keystate[keys[8]] && falling == false) {
-			if (positionRect.y > 300) positionRect.y -= 7.0; // jump if below the top
-			
-		}
-		else {
-			if (positionRect.y < 400) positionRect.y += 5.0; // fall if below the bottom
-			
 		}
 
-	}
 
-	if (isActive)
-	{
-		frameCounter += delta;
-
-		if (frameCounter >= 0.25f)
+		else
 		{
-			frameCounter = 0;
-			cropRect.x += frameWidth;
-			if (cropRect.x >= textureWidth)
+			isActive = false;
+		}
+
+		if (positionRect.y <= 300)
+		{
+			falling = true;
+		}
+
+		if (positionRect.y >= 400)
+		{
+			falling = false;
+		}
+
+		if (positionRect.y > 0 && positionRect.y < 420)
+		{
+			if (keystate[keys[8]] && falling == false) {
+				if (positionRect.y > 300) positionRect.y -= 7.0; // jump if below the top
+
+			}
+			else {
+				if (positionRect.y < 400) positionRect.y += 5.0; // fall if below the bottom
+
+			}
+
+		}
+
+		if (isActive)
+		{
+			frameCounter += delta;
+
+			if (frameCounter >= 0.25f)
 			{
-				cropRect.x = 0;
+				frameCounter = 0;
+				cropRect.x += frameWidth;
+				if (cropRect.x >= textureWidth)
+				{
+					cropRect.x = 0;
+				}
 			}
 		}
+		else
+		{
+			frameCounter = 0;
+			cropRect.x = frameWidth;
+		}
 	}
-	else
-	{
-		frameCounter = 0;
-		cropRect.x = frameWidth;
-	}
-
 }
 /**
 bool Player::IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev, Player & p)

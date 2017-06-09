@@ -171,6 +171,7 @@ int main(int argc, char** argv)
 	Menu UpgradedLaserInShop(renderTarget, "upgradedlaser.png", 0, 0);
 
 	Text zombieText(renderTarget, text);
+	Text playerText(renderTarget, text);
 
 	Bullet * _bullet = new Bullet(renderTarget, "bullet.png", 0 , 0, 1 ,1);
 
@@ -191,54 +192,12 @@ int main(int argc, char** argv)
 	int LowVolume = 20;
 	int mediumVolume = 70;
 	int highvolume = 128; //128 is max
-	
-	//Player Health
-	SDL_Rect PlayerHealthRect;
-	SDL_Rect PlayerTextHealthRect;
-	PlayerHealthRect.x = 140;
-	PlayerHealthRect.y = 25;
-	PlayerHealthRect.w = 100;
-	PlayerHealthRect.h = 40;
-
-	PlayerTextHealthRect.x = 20;
-	PlayerTextHealthRect.y = 25;
-	PlayerTextHealthRect.w = 100;
-	PlayerTextHealthRect.h = 40;
 
 
 	std::stringstream playerHealthSTREAM;
 	playerHealthSTREAM << playerHealth;
 	
-	SDL_Surface * PlayerHealthSurface = TTF_RenderText_Solid(text, playerHealthSTREAM.str().c_str(), White);
-	SDL_Texture * PlayerHealthTexture = SDL_CreateTextureFromSurface(renderTarget, PlayerHealthSurface);
 
-	SDL_Surface* PlayerTextHealthSurface = TTF_RenderText_Solid(text, "Player Health::", White);
-	SDL_Texture* PlayerTextHealthTexture = SDL_CreateTextureFromSurface(renderTarget, PlayerTextHealthSurface);
-
-	//Zombie Health
-	std::stringstream zombiehealthSTREAM;
-	zombiehealthSTREAM << zombieHealth;
-
-	SDL_Surface * ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
-	SDL_Texture * ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-
-	SDL_Surface* ZombieHealthTextSurface = TTF_RenderText_Solid(text, "Zombie Healthche::", White);
-	SDL_Texture* ZombieHealthTextTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthTextSurface);
-
-
-	//TEST
-
-	SDL_Rect healthRect;
-	SDL_Rect healthTextRect;
-	healthRect.x = 500;
-	healthRect.y = 25;
-	healthRect.w = 100;
-	healthRect.h = 40;
-	//Zombie health text rect
-	healthTextRect.x = 330;
-	healthTextRect.y = 20;
-	healthTextRect.w = 150;
-	healthTextRect.h = 50;
 	
 
 	//Coins
@@ -624,12 +583,12 @@ int main(int argc, char** argv)
 
 			player1.Draw(renderTarget);  //Draw first player
 			zombie1.Draw(renderTarget);
-			zombieText.TextDraw(renderTarget, text);
+			zombieText.ZombieTextDraw(renderTarget, text);
+			playerText.PlayerTextDraw(renderTarget, text);
 
 			SDL_RenderCopy(renderTarget, CoinsTextTexture, NULL, &CoinsTextRect);
 
-			SDL_RenderCopy(renderTarget, PlayerHealthTexture, NULL, &PlayerHealthRect);
-			SDL_RenderCopy(renderTarget, PlayerTextHealthTexture, NULL, &PlayerTextHealthRect);
+			
 			SDL_SetRenderDrawColor(renderTarget, 255, 255, 255, SDL_ALPHA_OPAQUE);
 			SDL_RenderDrawLine(renderTarget, 320, 200, 300, 240);
 			SDL_RenderDrawLine(renderTarget, 300, 240, 340, 240);
@@ -645,8 +604,8 @@ int main(int argc, char** argv)
 			collision.PlayerBulletToZombieCollision(ammo, zombie1);
 		
 
-			zombieText.UpdateText(renderTarget, text, zombie1);
-
+			zombieText.ZombieUpdateText(renderTarget, text, zombie1);
+			playerText.PlayerUpdateText(renderTarget, text, player1);
 			zombieBullet.Attack(renderTarget, zombie1);
 		
 			bullet.Draw(renderTarget, ammo);
@@ -779,9 +738,6 @@ int main(int argc, char** argv)
 				secondfirework.win(renderTarget);
 			}
 			
-			SDL_RenderCopy(renderTarget, ZombieHealthTexture, NULL, &healthRect);
-			SDL_RenderCopy(renderTarget, ZombieHealthTextTexture, NULL, &healthTextRect);
-			SDL_RenderCopy(renderTarget, CoinTexture, NULL, &CoinsRect);
 
 }
 

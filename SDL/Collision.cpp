@@ -72,17 +72,26 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 
 void Collision::ZombieBulletToPlayerCollision(Zombie & zombie, Player & player)
 {
-
-	if (sqrt(pow(zombie.GetBulletOriginX() - player.GetOriginX(), 2) + pow(zombie.GetBulletOriginY() - player.GetOriginY(), 2)) >= zombie.GetBulletRadius() + player.GetRadius())
+	if (player.alive == true)
 	{
-		//If any if returning false collision is not working?
 
-	}
+		if (sqrt(pow(zombie.GetBulletOriginX() - player.GetOriginX(), 2) + pow(zombie.GetBulletOriginY() - player.GetOriginY(), 2)) >= zombie.GetBulletRadius() + player.GetRadius())
+		{
+			//If any if returning false collision is not working?
+			SDL_SetTextureColorMod(player.texture, 255, 255, 255);
+		}
 
-	else
-	{
-		// Do Something
-		player.positionRect.x = 200; 
+		else
+		{
+			SDL_SetTextureColorMod(player.texture, 252, 29, 29);
+			zombie.zombieBulletRect.x = -700;
+			player.health -= 5;
+			player.hit = true;
+		}
+		if (player.health <= 0)
+		{
+			player.alive = false;
+		}
 	}
 }
 

@@ -76,10 +76,14 @@ public:
 	int GetRadius();
 	int frameWidth, frameHeight;
 	SDL_Rect cropRect;
+	int health = 100;
+	int hit = true;
+	SDL_Texture *texture;
+	bool alive = true;
 
 private:
 	
-	SDL_Texture *texture;
+	
 	int originX;
 	int originY;
 	int radius;

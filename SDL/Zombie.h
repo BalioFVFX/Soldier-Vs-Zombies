@@ -25,6 +25,7 @@ public:
 	bool alive = true;
 	int health = 100;
 	bool hit = true;
+	SDL_Rect zombieBulletRect;
 private:
 	int originX;
 	int originY;
@@ -33,7 +34,7 @@ private:
 	int bulletOriginY;
 	int bulletRadius;
 	
-	SDL_Rect zombieBulletRect;
+
 	SDL_Rect cropRect;
 	
 	SDL_Surface *surface;

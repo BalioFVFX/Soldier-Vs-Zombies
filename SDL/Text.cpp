@@ -37,14 +37,14 @@ void Text::UpdateText(SDL_Renderer * renderTarget, TTF_Font * text, Zombie &zomb
 {
 	if (zombie.hit == true)
 	{
-		if (zombie.alive == true)
-		{
+		//if (zombie.alive == true) If Zombie Gets Killed HP Is Staying At 10
+		//{
 			zombiehealthSTREAM.str("");
 			zombiehealthSTREAM << zombie.health;
 
 			ZombieHealthSurface = TTF_RenderText_Solid(text, zombiehealthSTREAM.str().c_str(), White);
 			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
 			zombie.hit = false;
-		}
+		//}
 	}
 }

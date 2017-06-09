@@ -124,9 +124,11 @@ void Zombie::Update(Zombie & zombie, float delta, unsigned int lastTime, int cur
 
 void Zombie::Attack(SDL_Renderer * renderTarget, Zombie & zombie)
 {
+	if (zombie.alive == true)
+	{
 		currentTime = SDL_GetTicks();
 
-		if (currentTime > lastTime + 0) 
+		if (currentTime > lastTime + 0)
 		{
 			lastTime = currentTime;
 			zombieBulletRect.x -= 10;
@@ -138,6 +140,7 @@ void Zombie::Attack(SDL_Renderer * renderTarget, Zombie & zombie)
 		}
 
 		SDL_RenderCopy(renderTarget, texture, NULL, &zombieBulletRect);
+	}
 }
 
 

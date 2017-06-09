@@ -70,3 +70,19 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 	}
 }
 
+void Collision::ZombieBulletToPlayerCollision(Zombie & zombie, Player & player)
+{
+
+	if (sqrt(pow(zombie.GetBulletOriginX() - player.GetOriginX(), 2) + pow(zombie.GetBulletOriginY() - player.GetOriginY(), 2)) >= zombie.GetBulletRadius() + player.GetRadius())
+	{
+		//If any if returning false collision is not working?
+
+	}
+
+	else
+	{
+		// Do Something
+		player.positionRect.x = 200; 
+	}
+}
+

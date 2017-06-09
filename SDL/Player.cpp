@@ -57,6 +57,7 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 
 	originX = frameWidth / 2;
 	originY = frameHeight / 2;
+	radius = frameWidth / 2;
 
 	isActive = false;
 	isSecondActive = false;
@@ -224,12 +225,17 @@ bool Player::IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev
 */
 int Player::GetOriginX()
 {
-	return originX;
+	return originX = positionRect.x;
 }
 
 int Player::GetOriginY()
 {
-	return originY;
+	return originY = positionRect.y;
+}
+
+int Player::GetRadius()
+{
+	return radius;
 }
 
 

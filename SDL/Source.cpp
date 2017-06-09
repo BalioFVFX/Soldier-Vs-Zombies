@@ -650,7 +650,8 @@ int main(int argc, char** argv)
 			zombieBullet.Attack(renderTarget, zombie1);
 		
 			bullet.Draw(renderTarget, ammo);
-		
+			
+			collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
 
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
 			{

@@ -18,6 +18,9 @@ public:
 	int GetOriginX();
 	int GetOriginY();
 	int GetRadius();
+	int GetBulletOriginX();
+	int GetBulletOriginY();
+	int GetBulletRadius();
 	SDL_Texture *texture;
 	bool alive = true;
 	int health = 100;
@@ -26,6 +29,9 @@ private:
 	int originX;
 	int originY;
 	int radius;
+	int bulletOriginX;
+	int bulletOriginY;
+	int bulletRadius;
 	
 	SDL_Rect zombieBulletRect;
 	SDL_Rect cropRect;

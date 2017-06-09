@@ -73,6 +73,7 @@ public:
 	SDL_Rect positionRect;
 	int GetOriginX();
 	int GetOriginY();
+	int GetRadius();
 	int frameWidth, frameHeight;
 	SDL_Rect cropRect;
 
@@ -81,6 +82,7 @@ private:
 	SDL_Texture *texture;
 	int originX;
 	int originY;
+	int radius;
 
 	SDL_Rect firework_Rect;
 

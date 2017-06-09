@@ -13,4 +13,5 @@ public:
 	Collision() : Player(), Zombie(), Bullet() {};
 
 	void PlayerBulletToZombieCollision(Bullet bullet[], Zombie &zombie);
+	void ZombieBulletToPlayerCollision(Zombie &zombie, Player & player);
 };

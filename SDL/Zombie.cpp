@@ -41,6 +41,10 @@ Zombie::Zombie(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 		originY = frameHeight / 2;
 		radius = frameWidth / 2;
 
+		bulletOriginX = frameWidth / 2;
+		bulletOriginY = frameHeight / 2;
+		bulletRadius = frameWidth / 2;
+
 		isActive = false;
 		isSecondActive = false;
 
@@ -157,4 +161,19 @@ int Zombie::GetOriginY()
 int Zombie::GetRadius()
 {
 	return radius;
+}
+
+int Zombie::GetBulletOriginX()
+{
+	return bulletOriginX + zombieBulletRect.x;
+}
+
+int Zombie::GetBulletOriginY()
+{
+	return bulletOriginY + zombieBulletRect.y;
+}
+
+int Zombie::GetBulletRadius()
+{
+	return bulletRadius;
 }

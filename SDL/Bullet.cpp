@@ -50,37 +50,70 @@ void Bullet::init()
 
 void Bullet::HandleInput(Bullet bullet[], Player & player)
 {
-	for (int i = 0; i < 4; i++)
+	if (player.facingRight == true)
 	{
-		if (!bullet[i].alive)
+		for (int i = 0; i < 4; i++)
 		{
-			bullet[i].alive = 1;
-			bullet[i].b.x = player.positionRect.x + 30;
-			bullet[i].b.y = player.positionRect.y + 15;
-			bullet[i].b.w = 30;
-			bullet[i].b.h = 20;
-			break;
+			if (!bullet[i].alive)
+			{
+				bullet[i].alive = 1;
+				bullet[i].b.x = player.positionRect.x + 30;
+				bullet[i].b.y = player.positionRect.y + 15;
+				bullet[i].b.w = 30;
+				bullet[i].b.h = 20;
+				break;
+			}
 		}
 	}
-
 }
 
-void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[])
+void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[], Player &player)
 {
-	for (int i = 0; i < 4; i++)
+
+	if (player.facingRight == true | bullet->updatingRight == true)
 	{
-		if (bullet[i].alive)
-		{
-			bullet[i].b.x += 5;
-			SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
-		}
-		if (bullet[i].b.x > 640)
-		{
-			bullet[i].alive = 0;
-		}
+	
 
+			for (int i = 0; i < 4; i++)
+			{
+				bullet[i].updatingRight = true;
+				if (bullet[i].alive)
+				{
+					bullet[i].b.x += 5;
+					player.updatingRight = true;
+					SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
+				}
+				if (bullet[i].b.x > 640)
+				{
+					bullet[i].alive = 0;
+					bullet[i].updatingRight = false;
+				}
+
+			}
+		}
+	
+}
+
+void Bullet::DrawLeft(SDL_Renderer * renderTarget, Bullet bullet[], Player & player)
+{
+	if (player.facingLeft == true || player.updatingLeft == true)
+	{
+		player.updatingLeft = true;
+		for (int i = 0; i < 4; i++)
+		{
+			if (bullet[i].alive)
+			{
+				bullet[i].b.x -= 5;
+				SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
+			}
+			if (bullet[i].b.x < - 10)
+			{
+				bullet[i].alive = 0;
+				player.updatingLeft = false;
+			}
+		
+		}
 	}
-
 
 }
 

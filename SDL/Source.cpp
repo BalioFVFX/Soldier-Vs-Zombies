@@ -117,8 +117,9 @@ int main(int argc, char** argv)
 	Player Laser(renderTarget, "laser.png", 0, 0, 1, 1);
 	Player UpgradedLaser(renderTarget, "upgradedlaser.png", 0, 0, 1, 1);
 	Bullet ammo[4];
+	Bullet leftAmmo[4];
 	Bullet bullet(renderTarget, "ball.png", 0, 0, 1, 1);
-
+	Bullet bullet2(renderTarget, "ball.png", 0, 0, 1, 1);
 
 
 	//Zombie Overall:
@@ -599,17 +600,18 @@ int main(int argc, char** argv)
 			if (bKeyA == 1 && aTick % 10 == 1)
 			{
 				bullet.HandleInput(ammo, player1);
+			
 			}
 
 			collision.PlayerBulletToZombieCollision(ammo, zombie1);
-		
+			std::cout << ammo[0].updatingRight << std::endl;
 
 			zombieText.ZombieUpdateText(renderTarget, text, zombie1);
 			playerText.PlayerUpdateText(renderTarget, text, player1);
 			zombieBullet.Attack(renderTarget, zombie1);
 		
-			bullet.Draw(renderTarget, ammo);
-			
+			bullet.Draw(renderTarget, ammo, player1);
+			bullet2.DrawLeft(renderTarget, leftAmmo, player1);
 			collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
 
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
@@ -648,63 +650,6 @@ int main(int argc, char** argv)
 
 			}
 
-		/*	
-			if (zombieDrawBullet.IntersectwithWall(delta, keyState, ev, drawTheWall)) 
-				{
-					timesWereHitted += 1;
-					
-				}
-		
-	
-
-			if (zombieDrawBullet.IntersectwithZombieBullet(player1))
-			{
-		
-				explosionFromZombie.drawExplosionFromZombie(renderTarget, player1);
-				
-
-				playerHealth -= 3;
-				playerHealthSTREAM.str("");
-				playerHealthSTREAM << playerHealth;
-
-				PlayerHealthSurface = TTF_RenderText_Solid(text, playerHealthSTREAM.str().c_str(), White);
-				PlayerHealthTexture = SDL_CreateTextureFromSurface(renderTarget, PlayerHealthSurface);
-
-
-				if (playerHealth <= 0)
-				{
-					gameOver = true;
-					inGame = false;
-					inMenu = true;
-					inSettings = false;
-					inShop = false;
-				}
-			}
-
-			if (zombieDrawBulletVer2.IntersectwithZombieBulletVer2(player1))
-			{
-				explosionFromZombie.drawExplosionFromZombie(renderTarget, player1);
-				playerHealth -= 5;
-				playerHealthSTREAM.str("");
-				playerHealthSTREAM << playerHealth;
-
-				PlayerHealthSurface = TTF_RenderText_Solid(text, playerHealthSTREAM.str().c_str(), White);
-				PlayerHealthTexture = SDL_CreateTextureFromSurface(renderTarget, PlayerHealthSurface);
-
-
-				if (playerHealth <= 0)
-				{
-					gameOver = true;
-					inGame = false;
-					inMenu = false;
-					inSettings = false;
-					inShop = false;
-				}
-			}
-			*/
-
-	
-
 			if (spawn2ndZombie && isPaused == false)
 			{
 				zombie2.Draw(renderTarget);
@@ -741,40 +686,6 @@ int main(int argc, char** argv)
 
 }
 
-		//Upgraded Laser 3RD
-/*
-		if (UpgradedLaser.IntersectwithUpgradedLaser(zombie3rd) == true)
-		{
-			Mix_PlayChannel(5, hitmarker, 0); //Hitmarker sound effect
-			explosion.drawExplosion(renderTarget, zombie3rd);
-
-			//Coins
-			coinsFromFille++;
-			writeFile.clear();
-			writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-
-			writeFile << coinsFromFille;
-			writeFile << "\n";
-			writeFile.close();
-
-
-
-			coinstream.str("");
-			coinstream << coinsFromFille++;
-
-			CoinSurface = TTF_RenderText_Solid(text, coinstream.str().c_str(), White);
-			CoinTexture = SDL_CreateTextureFromSurface(renderTarget, CoinSurface);
-
-			if (zombieHealth <= 0)
-			{
-				zombieHealth = 100;
-				zombiehealthSTREAM << zombieHealth + 100;
-				spawn3rdZombie = false;
-				isgamewin = true;
-
-			}
-		}
-		*/
 		if (isPaused == false)
 		{
 			//Keyboard events

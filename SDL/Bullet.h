@@ -17,8 +17,13 @@ public:
 	
 	void init();
 	void HandleInput(Bullet bullet[], Player & player);
-	void Draw(SDL_Renderer * renderTarget, Bullet bullet[]);
-	
+	void Draw(SDL_Renderer * renderTarget, Bullet bullet[], Player &player);
+	void DrawLeft(SDL_Renderer *renderTarget, Bullet bullet[], Player &player);
+	int bullets = 4;
+	int counter = 0;
+	bool movingRight = false;
+	bool updatingRight = false;
+	bool facingRight = false;
 	int GetOriginX();
 	int GetOriginY();
 	int GetRadius();

@@ -58,9 +58,6 @@ public:
 	void drawWall(SDL_Renderer *renderTarget, int x, int y);
 	void updateWall(float delta, const Uint8 *keystate, SDL_Event ev, Player &p);
 	
-	//Wall Collision
-	bool IntersectwithWall(float delta, const Uint8 * keystate, SDL_Event ev, Player &p);
-
 	//Text updating and drawing
 
 	int getPlayerY = 400;
@@ -69,6 +66,10 @@ public:
 	bool moving = true;
 	bool secondZombieMoving = true;
 	bool dead = false;
+	bool facingLeft = false;
+	bool facingRight = false;
+	bool updatingLeft = false;
+	bool updatingRight = false;
 
 	SDL_Rect positionRect;
 	int GetOriginX();

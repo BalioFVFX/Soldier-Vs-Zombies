@@ -151,6 +151,7 @@ void Player::Update(float delta, const Uint8 *keystate, SDL_Event ev)
 			else
 			{
 				facingRight = false;
+				facingLeft = true;
 				cropRect.y = frameHeight;
 				positionRect.x -= moveSpeed * delta;
 				
@@ -159,6 +160,7 @@ void Player::Update(float delta, const Uint8 *keystate, SDL_Event ev)
 		else if (keystate[keys[3]])
 		{
 			facingRight = true;
+			facingLeft = false;
 			cropRect.y = frameHeight;
 			positionRect.x += moveSpeed* delta;
 			cropRect.y = frameHeight * 3;

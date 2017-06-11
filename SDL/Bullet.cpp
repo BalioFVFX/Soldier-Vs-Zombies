@@ -56,6 +56,27 @@ void Bullet::HandleInput(Bullet bullet[], Player & player)
 		{
 			if (!bullet[i].alive)
 			{
+				bullet[i].updatingRight = true;
+				bullet[i].alive = 1;
+				bullet[i].b.x = player.positionRect.x + 30;
+				bullet[i].b.y = player.positionRect.y + 15;
+				bullet[i].b.w = 30;
+				bullet[i].b.h = 20;
+				break;
+			}
+		}
+	}
+}
+
+void Bullet::HandleInputLeft(Bullet bullet[], Player & player)
+{
+	if (player.facingLeft == true)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (!bullet[i].alive)
+			{
+				bullet[i].updatingLeft = true;
 				bullet[i].alive = 1;
 				bullet[i].b.x = player.positionRect.x + 30;
 				bullet[i].b.y = player.positionRect.y + 15;
@@ -69,21 +90,17 @@ void Bullet::HandleInput(Bullet bullet[], Player & player)
 
 void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[], Player &player)
 {
-
-	if (player.facingRight == true | bullet->updatingRight == true)
+	for (int i = 0; i < 4; i++)
 	{
-	
-
-			for (int i = 0; i < 4; i++)
-			{
-				bullet[i].updatingRight = true;
+	if (player.facingRight == true || bullet[i].updatingRight == true)
+	{
+		
 				if (bullet[i].alive)
 				{
 					bullet[i].b.x += 5;
-					player.updatingRight = true;
 					SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
 				}
-				if (bullet[i].b.x > 640)
+				if (bullet[i].b.x > 700)
 				{
 					bullet[i].alive = 0;
 					bullet[i].updatingRight = false;
@@ -96,20 +113,20 @@ void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[], Player &player)
 
 void Bullet::DrawLeft(SDL_Renderer * renderTarget, Bullet bullet[], Player & player)
 {
-	if (player.facingLeft == true || player.updatingLeft == true)
+	for (int i = 0; i < 4; i++)
 	{
-		player.updatingLeft = true;
-		for (int i = 0; i < 4; i++)
-		{
+	if (player.facingLeft == true || bullet[i].updatingLeft == true)
+	{
+		
 			if (bullet[i].alive)
 			{
 				bullet[i].b.x -= 5;
 				SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
 			}
-			if (bullet[i].b.x < - 10)
+			if (bullet[i].b.x < - 70)
 			{
 				bullet[i].alive = 0;
-				player.updatingLeft = false;
+				bullet[i].updatingLeft = false;
 			}
 		
 		}

@@ -600,11 +600,11 @@ int main(int argc, char** argv)
 			if (bKeyA == 1 && aTick % 10 == 1)
 			{
 				bullet.HandleInput(ammo, player1);
+				bullet2.HandleInputLeft(leftAmmo, player1);
 			
 			}
 
 			collision.PlayerBulletToZombieCollision(ammo, zombie1);
-			std::cout << ammo[0].updatingRight << std::endl;
 
 			zombieText.ZombieUpdateText(renderTarget, text, zombie1);
 			playerText.PlayerUpdateText(renderTarget, text, player1);

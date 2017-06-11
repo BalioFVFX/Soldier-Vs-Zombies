@@ -68,8 +68,6 @@ public:
 	bool dead = false;
 	bool facingLeft = false;
 	bool facingRight = false;
-	bool updatingLeft = false;
-	bool updatingRight = false;
 
 	SDL_Rect positionRect;
 	int GetOriginX();

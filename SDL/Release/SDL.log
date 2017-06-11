@@ -1,23 +1,37 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (SDL TEST.vcxproj, Soldier Vs Zombies 2.2.vcxproj, Soldier Vs Zombies 2.9.vcxproj, Soldier Vs Zombies 3.0.vcxproj, Soldiers Vs Zombies 2.0.vcxproj, Soldiers Vs Zombies 2.2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Bullet.cpp
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(125): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
   Collision.cpp
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(125): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Enviroment.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Player.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
+Player.cpp(126): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(128): warning C4552: '-': operator has no effect; expected operator with side-effect
+Player.cpp(141): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(156): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(165): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(189): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+Player.cpp(193): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+Player.cpp(271): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(314): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+Player.cpp(356): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
   Source.cpp
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(125): warning C4305: 'initializing': truncation from 'double' to 'float'
-Source.cpp(720): warning C4018: '>': signed/unsigned mismatch
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
+Source.cpp(718): warning C4018: '>': signed/unsigned mismatch
 Source.cpp(112): warning C4390: ';': empty controlled statement found; is this the intent?
   Text.cpp
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(125): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
 Text.cpp(81): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
   Zombie.cpp
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(125): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
 Zombie.cpp(90): warning C4018: '>': signed/unsigned mismatch
 Zombie.cpp(98): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
   Generating code
-  276 of 586 functions (47.1%) were compiled, the rest were copied from previous compilation.
-    4 functions were new in current compilation
-    62 functions had inline decision re-evaluated but remain unchanged
+  4 of 584 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Release\Soldier Vs Zombies 3.5.exe
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Release\Soldier Vs Zombies 3.5.pdb (Full PDB)

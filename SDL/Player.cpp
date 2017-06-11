@@ -150,7 +150,7 @@ void Player::Update(float delta, const Uint8 *keystate, SDL_Event ev)
 			}
 			else
 			{
-				facingRight = false;
+				facingRight = false; //Player Is Facing Left So Right Is False
 				facingLeft = true;
 				cropRect.y = frameHeight;
 				positionRect.x -= moveSpeed * delta;
@@ -159,7 +159,7 @@ void Player::Update(float delta, const Uint8 *keystate, SDL_Event ev)
 		}
 		else if (keystate[keys[3]])
 		{
-			facingRight = true;
+			facingRight = true; //Player Is Facing Right So Left Is False
 			facingLeft = false;
 			cropRect.y = frameHeight;
 			positionRect.x += moveSpeed* delta;

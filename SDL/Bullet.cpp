@@ -50,6 +50,7 @@ void Bullet::init()
 
 void Bullet::HandleInput(Bullet bullet[], Player & player)
 {
+	//If Player Is Facing Right Make A Bullet For The Right Side
 	if (player.facingRight == true)
 	{
 		for (int i = 0; i < Bullet_No; i++)
@@ -66,10 +67,7 @@ void Bullet::HandleInput(Bullet bullet[], Player & player)
 			}
 		}
 	}
-}
-
-void Bullet::HandleInputLeft(Bullet bullet[], Player & player)
-{
+	//If Player Is Facing Left Make A Bullet For The Left Side
 	if (player.facingLeft == true)
 	{
 		for (int i = 0; i < Bullet_No; i++)
@@ -86,10 +84,12 @@ void Bullet::HandleInputLeft(Bullet bullet[], Player & player)
 			}
 		}
 	}
+
 }
 
 void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[], Player &player)
 {
+	//Draw Bullet For The Right Side
 	for (int i = 0; i < Bullet_No; i++)
 	{
 	if (bullet[i].updatingRight == true)
@@ -101,38 +101,36 @@ void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[], Player &player)
 					bullet[i].b.x += 5;
 					SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
 				}
-				if (bullet[i].b.x > 700)
+				if (bullet[i].b.x > 650)
 				{
 					bullet[i].alive = 0;
 					bullet[i].updatingRight = false;
 				}
 			}
 		}
-}
-
-void Bullet::DrawLeft(SDL_Renderer * renderTarget, Bullet bullet[], Player & player)
-{
+	//Draw Bullet For The Left Side
 	for (int i = 0; i < Bullet_No; i++)
 	{
-	if (bullet[i].updatingLeft == true)
-	{
+		if (bullet[i].updatingLeft == true)
+		{
 			if (bullet[i].alive)
 			{
 				std::cout << "RIGHT: " << bullet[i].updatingRight << std::endl;
-				std::cout << "LEFT: "<< bullet[i].updatingLeft << std::endl;
+				std::cout << "LEFT: " << bullet[i].updatingLeft << std::endl;
 				bullet[i].b.x -= 5;
 				SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
 			}
-			if (bullet[i].b.x < - 70)
+			if (bullet[i].b.x < -10)
 			{
 				bullet[i].alive = 0;
 				bullet[i].updatingLeft = false;
 			}
-		
+
 		}
 	}
 
 }
+
 
 int Bullet::GetOriginX()
 {

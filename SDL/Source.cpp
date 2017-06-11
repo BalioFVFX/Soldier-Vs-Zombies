@@ -600,7 +600,7 @@ int main(int argc, char** argv)
 			if (bKeyA == 1 && aTick % 10 == 1)
 			{
 				bullet.HandleInput(ammo, player1);
-				bullet2.HandleInputLeft(leftAmmo, player1);
+				bullet.HandleInputLeft(ammo, player1);
 			
 			}
 
@@ -611,7 +611,7 @@ int main(int argc, char** argv)
 			zombieBullet.Attack(renderTarget, zombie1);
 		
 			bullet.Draw(renderTarget, ammo, player1);
-			bullet2.DrawLeft(renderTarget, leftAmmo, player1);
+			bullet.DrawLeft(renderTarget, ammo, player1);
 			collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
 
 			if (timesWereHitted <= 3 && bricksAlive1st == true)

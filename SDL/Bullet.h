@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "Player.h"
+
 class Bullet
 {
 	
@@ -11,7 +12,6 @@ public:
 	Bullet();
 	Bullet(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY);
 	~Bullet();
-	
 	bool alive = 0; //For bullet alive checking
 	SDL_Rect b; //For SDL Fill Rectangle
 	

@@ -1,5 +1,5 @@
 #include "Bullet.h"
-
+#define Bullet_No 4
 
 
 
@@ -52,7 +52,7 @@ void Bullet::HandleInput(Bullet bullet[], Player & player)
 {
 	if (player.facingRight == true)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < Bullet_No; i++)
 		{
 			if (!bullet[i].alive)
 			{
@@ -72,7 +72,7 @@ void Bullet::HandleInputLeft(Bullet bullet[], Player & player)
 {
 	if (player.facingLeft == true)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < Bullet_No; i++)
 		{
 			if (!bullet[i].alive)
 			{
@@ -90,13 +90,14 @@ void Bullet::HandleInputLeft(Bullet bullet[], Player & player)
 
 void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[], Player &player)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < Bullet_No; i++)
 	{
-	if (player.facingRight == true || bullet[i].updatingRight == true)
+	if (bullet[i].updatingRight == true)
 	{
-		
 				if (bullet[i].alive)
 				{
+					std::cout << "RIGHT: " << bullet[i].updatingRight << std::endl;
+					std::cout << "LEFT: " << bullet[i].updatingLeft << std::endl;
 					bullet[i].b.x += 5;
 					SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
 				}
@@ -105,21 +106,20 @@ void Bullet::Draw(SDL_Renderer * renderTarget, Bullet bullet[], Player &player)
 					bullet[i].alive = 0;
 					bullet[i].updatingRight = false;
 				}
-
 			}
 		}
-	
 }
 
 void Bullet::DrawLeft(SDL_Renderer * renderTarget, Bullet bullet[], Player & player)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < Bullet_No; i++)
 	{
-	if (player.facingLeft == true || bullet[i].updatingLeft == true)
+	if (bullet[i].updatingLeft == true)
 	{
-		
 			if (bullet[i].alive)
 			{
+				std::cout << "RIGHT: " << bullet[i].updatingRight << std::endl;
+				std::cout << "LEFT: "<< bullet[i].updatingLeft << std::endl;
 				bullet[i].b.x -= 5;
 				SDL_RenderCopy(renderTarget, texture, NULL, &bullet[i].b);
 			}

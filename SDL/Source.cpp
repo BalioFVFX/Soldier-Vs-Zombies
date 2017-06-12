@@ -611,6 +611,7 @@ int main(int argc, char** argv)
 			bullet.Draw(renderTarget, ammo, player1);
 			
 			collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
+			collision.PlayerToZombieCollision(player1, zombie1);
 
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
 			{

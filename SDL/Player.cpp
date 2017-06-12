@@ -63,7 +63,7 @@ Player::Player(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 
 		originX = frameWidth / 2;
 		originY = frameHeight / 2;
-		radius = frameWidth / 2;
+		radius = frameHeight / 2;
 
 		isActive = false;
 		isSecondActive = false;

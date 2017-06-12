@@ -99,6 +99,7 @@ void Collision::PlayerToZombieCollision(Player & player, Zombie & zombie)
 {
 	if (zombie.alive == true)
 	{
+		//If Infront The Zombie
 		if (sqrt(pow(player.GetOriginX() - zombie.GetOriginX(), 2) + pow(player.GetOriginY() - zombie.GetOriginY(), 2)) >= player.GetRadius() + zombie.GetRadius())
 		{
 			//If any if returning false collision is not working?
@@ -111,6 +112,21 @@ void Collision::PlayerToZombieCollision(Player & player, Zombie & zombie)
 			player.positionRect.x -= 5;
 
 		}
+
+		//If Behind The Zombie
+		if (sqrt(pow(player.GetOriginX() - 3 - zombie.GetOriginX(), 2) + pow(player.GetOriginY() - zombie.GetOriginY(), 2)) >= player.GetRadius() + zombie.GetRadius())
+		{
+			//If any if returning false collision is not working?
+			SDL_SetTextureColorMod(zombie.texture, 255, 255, 255);
+		}
+
+		else
+		{
+			SDL_SetTextureColorMod(player.texture, 252, 29, 29);
+			player.positionRect.x += 5;
+
+		}
+
 	}
 }
 

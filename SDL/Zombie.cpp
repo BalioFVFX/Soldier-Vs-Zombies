@@ -37,9 +37,9 @@ Zombie::Zombie(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 		frameWidth = zombieRect.w = cropRect.w;
 		frameHeight = zombieRect.h = cropRect.h;
 
-		originX = frameWidth / 2;
+		originX = 0;
 		originY = frameHeight / 2;
-		radius = frameWidth / 2;
+		radius = 5;
 
 		bulletOriginX = frameWidth / 2;
 		bulletOriginY = frameHeight / 2;

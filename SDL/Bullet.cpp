@@ -24,9 +24,9 @@ Bullet::Bullet(SDL_Renderer * renderTarget, std::string filePath, int x, int y, 
 	frameWidth = b.w = cropRect.w;
 	frameHeight = b.h = cropRect.h;
 
-	this->originX = 0;
-	this->originY = 0;
-	this->radius = 0;
+	this->originX = 12;
+	this->originY = 12;
+	this->radius = 12;
 
 
 }

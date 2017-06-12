@@ -117,7 +117,6 @@ int main(int argc, char** argv)
 	Player Laser(renderTarget, "laser.png", 0, 0, 1, 1);
 	Player UpgradedLaser(renderTarget, "upgradedlaser.png", 0, 0, 1, 1);
 	Bullet ammo[4];
-	Bullet leftAmmo[4];
 	Bullet bullet(renderTarget, "ball.png", 0, 0, 1, 1);
 	Bullet bullet2(renderTarget, "ball.png", 0, 0, 1, 1);
 
@@ -134,6 +133,7 @@ int main(int argc, char** argv)
 	Player explosionFromZombie(renderTarget, "explosion.gif", 0, 0, 1, 1);
 	
 	Collision collision;
+	Collision collision2;
 	
 	//Win
 	Player gameWin(renderTarget, "firework.png", 10, 100, 9, 4);
@@ -173,8 +173,6 @@ int main(int argc, char** argv)
 
 	Text zombieText(renderTarget, text);
 	Text playerText(renderTarget, text);
-
-	Bullet * _bullet = new Bullet(renderTarget, "bullet.png", 0 , 0, 1 ,1);
 
 	bool isRunning = true;
 	SDL_Event ev;
@@ -588,13 +586,6 @@ int main(int argc, char** argv)
 			playerText.PlayerTextDraw(renderTarget, text);
 
 			SDL_RenderCopy(renderTarget, CoinsTextTexture, NULL, &CoinsTextRect);
-
-			
-			SDL_SetRenderDrawColor(renderTarget, 255, 255, 255, SDL_ALPHA_OPAQUE);
-			SDL_RenderDrawLine(renderTarget, 320, 200, 300, 240);
-			SDL_RenderDrawLine(renderTarget, 300, 240, 340, 240);
-			SDL_RenderDrawLine(renderTarget, 340, 240, 320, 200);
-
 
 
 			if (bKeyA == 1 && aTick % 10 == 1)

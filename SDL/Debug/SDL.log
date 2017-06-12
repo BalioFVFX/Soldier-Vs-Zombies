@@ -1,24 +1,8 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SDL TEST.vcxproj, Soldier Vs Zombies 2.2.vcxproj, Soldier Vs Zombies 2.9.vcxproj, Soldier Vs Zombies 3.0.vcxproj, Soldiers vs Zombies 1.9.vcxproj, Soldiers Vs Zombies 2.0.vcxproj, Soldiers Vs Zombies 2.2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Zombie.cpp
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\zombie.cpp(90): warning C4018: '>': signed/unsigned mismatch
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\zombie.cpp(98): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
   Source.cpp
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(719): warning C4018: '>': signed/unsigned mismatch
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(710): warning C4018: '>': signed/unsigned mismatch
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(112): warning C4390: ';': empty controlled statement found; is this the intent?
-  Player.cpp
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(126): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(128): warning C4552: '-': operator has no effect; expected operator with side-effect
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(141): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(156): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(165): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(189): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(193): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(271): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(314): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(356): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
   Collision.cpp
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
   Bullet.cpp

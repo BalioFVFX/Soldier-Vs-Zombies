@@ -5,7 +5,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 {
 	if (zombie.alive == true)
 	{
-		if (sqrt(pow(bullet[0].GetOriginX() - zombie.GetOriginX(), 2) + pow(bullet[0].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[0].GetRadius() + zombie.GetRadius())
+		if (sqrt(pow(bullet[0].GetOriginX() - 25 - zombie.GetOriginX(), 2) + pow(bullet[0].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[0].GetRadius() + zombie.GetRadius())
 		{
 			//If any if returning false collision is not working?
 
@@ -22,7 +22,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 			zombie.hit = true;
 
 		}
-		if (sqrt(pow(bullet[1].GetOriginX() - zombie.GetOriginX(), 2) + pow(bullet[1].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[1].GetRadius() + zombie.GetRadius())
+		if (sqrt(pow(bullet[1].GetOriginX() - 25 - zombie.GetOriginX(), 2) + pow(bullet[1].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[1].GetRadius() + zombie.GetRadius())
 		{
 
 		}
@@ -36,7 +36,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 			zombie.hit = true;
 		}
 
-		if (sqrt(pow(bullet[2].GetOriginX() - zombie.GetOriginX(), 2) + pow(bullet[2].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[2].GetRadius() + zombie.GetRadius())
+		if (sqrt(pow(bullet[2].GetOriginX() - 25 - zombie.GetOriginX(), 2) + pow(bullet[2].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[2].GetRadius() + zombie.GetRadius())
 		{
 
 		}
@@ -50,7 +50,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
 			zombie.hit = true;
 		}
 
-		if (sqrt(pow(bullet[3].GetOriginX() - zombie.GetOriginX(), 2) + pow(bullet[3].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[3].GetRadius() + zombie.GetRadius())
+		if (sqrt(pow(bullet[3].GetOriginX() - 25 - zombie.GetOriginX(), 2) + pow(bullet[3].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[3].GetRadius() + zombie.GetRadius())
 		{
 
 		}
@@ -99,6 +99,7 @@ void Collision::PlayerToZombieCollision(Player & player, Zombie & zombie)
 {
 	if (zombie.alive == true)
 	{
+		
 		//If Infront The Zombie
 		if (sqrt(pow(player.GetOriginX() - zombie.GetOriginX(), 2) + pow(player.GetOriginY() - zombie.GetOriginY(), 2)) >= player.GetRadius() + zombie.GetRadius())
 		{

@@ -21,6 +21,8 @@ c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\sold
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.cpp(356): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
   Collision.cpp
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Bullet.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
   Generating Code...
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Debug\Soldier Vs Zombies 3.5.exe
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Debug\Soldier Vs Zombies 3.5.pdb (Full PDB)

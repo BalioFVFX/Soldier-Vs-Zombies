@@ -1,5 +1,5 @@
 #include "Coins.h"
-
+#define Coins_NO 1000
 
 
 Coins::Coins()
@@ -61,21 +61,36 @@ int Coins::GetRadius()
 	return radius;
 }
 
-void Coins::SpawnCoin(SDL_Renderer * renderTarget)
+void Coins::SpawnCoin(SDL_Renderer * renderTarget, Coins coins[])
 {
-	if (spawnCoin == true)
-	{
-		SDL_RenderCopy(renderTarget, texture, &cropRect, &positionRect);
-	}
+	
+		if (coins[0].alive == true)
+		{
+			SDL_RenderCopy(renderTarget, texture, &cropRect, &coins[0].positionRect);
+		}
+	
+
 }
 
-void Coins::UpdateCoin(Coins &coin, Zombie &zombie, float delta, unsigned int lastTime, int currentTime)
+void Coins::UpdateCoin(Coins coins[], Zombie &zombie, float delta, unsigned int lastTime, int currentTime)
 {
-	if (zombie.alive == false)
-	{
-		spawnCoin = true;
-		coin.positionRect.x = zombie.zombieRect.x;
-		coin.positionRect.y = zombie.zombieRect.y;
+	
+		
+			
+				if(zombie.alive == false)
+				coins[0].alive = true;
+				coins[0].positionRect.x = zombie.zombieRect.x;
+				coins[0].positionRect.y = zombie.zombieRect.y;
+				coins[0].positionRect.w = 59;
+				coins[0].positionRect.h = 59;
+				if (coins[0].pickedUp == true)
+				{
+					coins[0].alive = false;
+				}
+		
+			
+		
+
 		isActive = true;
 		currentTime = SDL_GetTicks();
 
@@ -114,6 +129,5 @@ void Coins::UpdateCoin(Coins &coin, Zombie &zombie, float delta, unsigned int la
 			frameCounter = 0;
 			cropRect.x = frameWidth;
 		}
-	}
 }
 

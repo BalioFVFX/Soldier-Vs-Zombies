@@ -134,6 +134,7 @@ int main(int argc, char** argv)
 	Player explosionFromZombie(renderTarget, "explosion.gif", 0, 0, 1, 1);
 
 	Coins coinsObject(renderTarget, "coins.png", 300, 300, 9, 4);
+	Coins coinsArray[1000];
 	
 	Collision collision;
 	Collision collision2;
@@ -604,13 +605,14 @@ int main(int argc, char** argv)
 		
 			bullet.Draw(renderTarget, ammo, player1);
 			
-			coinsObject.SpawnCoin(renderTarget);
+			coinsObject.SpawnCoin(renderTarget, coinsArray);
 	
-			coinsObject.UpdateCoin(coinsObject, zombie1, delta, lastTime, currentTime);
-
+			coinsObject.UpdateCoin(coinsArray, zombie1, delta, lastTime, currentTime);
+			std::cout << coinsArray[0].positionRect.x << std::endl;
+			std::cout << coinsArray[20].positionRect.x << std::endl;
 			collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
 			collision.PlayerToZombieCollision(player1, zombie1);
-			collision.PlayerToCoinsCollision(player1, coinsObject);
+			collision.PlayerToCoinsCollision(player1, coinsArray);
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
 			{
 				drawTheWall.drawWall(renderTarget, drawPosX, drawPosY);

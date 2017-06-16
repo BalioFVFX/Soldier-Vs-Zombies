@@ -127,19 +127,23 @@ void Collision::PlayerToZombieCollision(Player & player, Zombie & zombie)
 	}
 }
 
-void Collision::PlayerToCoinsCollision(Player & player, Coins & coin)
+void Collision::PlayerToCoinsCollision(Player & player, Coins coin[])
 {
-	//If Infront The Zombie
-	if (sqrt(pow(player.GetOriginX() - coin.GetOriginX(), 2) + pow(player.GetOriginY() - coin.GetOriginY(), 2)) >= player.GetRadius() + coin.GetRadius() - 49)
+	std::cout << "Collision: " << coin[0].GetOriginX() << std::endl;
+	if (coin[0].pickedUp == false)
 	{
+		//If Infront The Zombie
+		if (sqrt(pow(player.GetOriginX() - coin[0].GetOriginX(), 2) + pow(player.GetOriginY() - coin[0].GetOriginY(), 2)) >= player.GetRadius() + coin[0].GetRadius() - 19)
+		{
 
-	}
+		}
 
-	else
-	{
-		SDL_SetTextureColorMod(player.texture, 252, 29, 29);
-	
+		else
+		{
+			SDL_SetTextureColorMod(player.texture, 252, 29, 29);
+			coin[0].pickedUp = true;
 
+		}
 	}
 }
 

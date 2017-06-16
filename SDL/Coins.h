@@ -11,12 +11,14 @@ public:
 	Coins(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY);
 	~Coins();
 
-	void SpawnCoin(SDL_Renderer *renderTarget);
-	void UpdateCoin(Coins &coin, Zombie & zombie, float delta, unsigned int lastTime, int currentTime);
+	void SpawnCoin(SDL_Renderer *renderTarget, Coins coins[]);
+	void UpdateCoin(Coins coins[], Zombie & zombie, float delta, unsigned int lastTime, int currentTime);
 	int GetOriginX();
 	int GetOriginY();
 	int GetRadius();
-
+	bool alive = false;
+	SDL_Rect positionRect;
+	bool pickedUp = false;
 private:
 	SDL_Surface * surface = nullptr;
 	int originX;
@@ -30,9 +32,9 @@ private:
 	int health = 100;
 	int hit = true;
 	SDL_Texture *texture;
-	SDL_Rect positionRect;
+
 	bool moving = true;
 	float moveSpeed;
-	bool spawnCoin = false;
+
 };
 

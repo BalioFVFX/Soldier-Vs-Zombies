@@ -606,7 +606,7 @@ int main(int argc, char** argv)
 			
 			coinsObject.SpawnCoin(renderTarget);
 	
-			coinsObject.UpdateCoin(coinsObject, delta, lastTime, currentTime);
+			coinsObject.UpdateCoin(coinsObject, zombie1, delta, lastTime, currentTime);
 
 			collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
 			collision.PlayerToZombieCollision(player1, zombie1);

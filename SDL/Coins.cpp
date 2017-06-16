@@ -40,50 +40,57 @@ Coins::~Coins()
 
 void Coins::SpawnCoin(SDL_Renderer * renderTarget)
 {
-	SDL_RenderCopy(renderTarget, texture, &cropRect, &positionRect);
+	if (spawnCoin == true)
+	{
+		SDL_RenderCopy(renderTarget, texture, &cropRect, &positionRect);
+	}
 }
 
-void Coins::UpdateCoin(Coins &coin, float delta, unsigned int lastTime, int currentTime)
+void Coins::UpdateCoin(Coins &coin, Zombie &zombie, float delta, unsigned int lastTime, int currentTime)
 {
-	positionRect.w = 100;
-	positionRect.h = 30;
-	isActive = true;
-	currentTime = SDL_GetTicks();
-
-	if (currentTime > lastTime + 1)
+	if (zombie.alive == false)
 	{
+		spawnCoin = true;
+		coin.positionRect.x = zombie.zombieRect.x;
+		coin.positionRect.y = zombie.zombieRect.y;
+		isActive = true;
+		currentTime = SDL_GetTicks();
 
-		lastTime = currentTime;
-
-
-		cropRect.y = frameHeight;
-
-		cropRect.y = frameHeight * 3;
-	}
-	else
-	{
-		isActive = false;
-	}
-
-
-	if (isActive)
-	{
-		frameCounter += delta;
-
-		if (frameCounter >= 0.25f)
+		if (currentTime > lastTime + 1)
 		{
-			frameCounter = 0;
-			cropRect.x += frameWidth;
-			if (cropRect.x >= textureWidth)
+
+			lastTime = currentTime;
+
+
+			cropRect.y = frameHeight;
+
+			cropRect.y = frameHeight * 3;
+		}
+		else
+		{
+			isActive = false;
+		}
+
+
+		if (isActive)
+		{
+			frameCounter += delta;
+
+			if (frameCounter >= 0.25f)
 			{
-				cropRect.x = 0;
+				frameCounter = 0;
+				cropRect.x += frameWidth;
+				if (cropRect.x >= textureWidth)
+				{
+					cropRect.x = 0;
+				}
 			}
 		}
-	}
-	else
-	{
-		frameCounter = 0;
-		cropRect.x = frameWidth;
+		else
+		{
+			frameCounter = 0;
+			cropRect.x = frameWidth;
+		}
 	}
 }
 

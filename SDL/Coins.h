@@ -11,7 +11,7 @@ public:
 	~Coins();
 
 	void SpawnCoin(SDL_Renderer *renderTarget);
-	void UpdateCoin(Coins &coin, float delta, unsigned int lastTime, int currentTime);
+	void UpdateCoin(Coins &coin, Zombie & zombie, float delta, unsigned int lastTime, int currentTime);
 private:
 	SDL_Surface * surface = nullptr;
 	float frameCounter;
@@ -25,5 +25,6 @@ private:
 	SDL_Rect positionRect;
 	bool moving = true;
 	float moveSpeed;
+	bool spawnCoin = false;
 };
 

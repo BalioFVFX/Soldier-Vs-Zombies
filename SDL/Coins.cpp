@@ -74,21 +74,24 @@ void Coins::SpawnCoin(SDL_Renderer * renderTarget, Coins coins[])
 
 void Coins::UpdateCoin(Coins coins[], Zombie &zombie, float delta, unsigned int lastTime, int currentTime)
 {
+	for (int i = 0; i < 20; i++)
+	{
+		if (zombie.alive == false)
+			if (coins[i].pickedUp == false)
+			{
+				coins[i].alive = true;
+				coins[i].positionRect.x = zombie.zombieRect.x;
+				coins[i].positionRect.y = zombie.zombieRect.y;
+				coins[i].positionRect.w = 59;
+				coins[i].positionRect.h = 59;
+				break;
+			}
+		if (coins[i].pickedUp == true)
+		{
+			coins[i].alive = false;
+		}
+	}
 	
-		
-			
-				if(zombie.alive == false)
-				coins[0].alive = true;
-				coins[0].positionRect.x = zombie.zombieRect.x;
-				coins[0].positionRect.y = zombie.zombieRect.y;
-				coins[0].positionRect.w = 59;
-				coins[0].positionRect.h = 59;
-				if (coins[0].pickedUp == true)
-				{
-					coins[0].alive = false;
-				}
-		
-			
 		
 
 		isActive = true;

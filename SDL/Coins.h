@@ -19,6 +19,7 @@ public:
 	bool alive = false;
 	SDL_Rect positionRect;
 	bool pickedUp = false;
+	int coinNumber[1000];
 private:
 	SDL_Surface * surface = nullptr;
 	int originX;

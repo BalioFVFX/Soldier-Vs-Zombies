@@ -141,6 +141,7 @@ void Collision::PlayerToCoinsCollision(Player & player, Coins coin[])
 		else
 		{
 			SDL_SetTextureColorMod(player.texture, 252, 29, 29);
+			player.positionRect.x = 200;
 			coin[0].pickedUp = true;
 
 		}

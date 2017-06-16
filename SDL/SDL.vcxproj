@@ -77,6 +77,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Coins.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Enviroment.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -87,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Coins.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Enviroment.h" />
     <ClInclude Include="Menu.h" />

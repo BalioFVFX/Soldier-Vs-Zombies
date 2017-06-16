@@ -12,6 +12,7 @@
 #include "Bullet.h"
 #include "Zombie.h"
 #include "Collision.h"
+#include "Coins.h"
 
 int x = 0, y = 0;
 int aTest = 0;
@@ -131,6 +132,8 @@ int main(int argc, char** argv)
 	Player zombieDrawBulletVer2(renderTarget, "Zombie_Bullet Edited_Version_2.png", 0, 0, 1, 1);
 	Player explosion(renderTarget, "explosion.gif", 0, 0, 1, 1);
 	Player explosionFromZombie(renderTarget, "explosion.gif", 0, 0, 1, 1);
+
+	Coins coinsObject(renderTarget, "coins.png", 300, 300, 9, 4);
 	
 	Collision collision;
 	Collision collision2;
@@ -601,6 +604,10 @@ int main(int argc, char** argv)
 		
 			bullet.Draw(renderTarget, ammo, player1);
 			
+			coinsObject.SpawnCoin(renderTarget);
+	
+			coinsObject.UpdateCoin(coinsObject, delta, lastTime, currentTime);
+
 			collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
 			collision.PlayerToZombieCollision(player1, zombie1);
 
@@ -686,6 +693,7 @@ int main(int argc, char** argv)
 				if (regularZombieUpdate == true)
 				{
 					zombie1.Update(zombie1, delta, lastTime, currentTime);
+				
 					if (spawn2ndZombie == true)
 					{
 						//zombie2.Update(zombie2, delta, lastTime, currentTime);

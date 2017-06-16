@@ -7,13 +7,21 @@
 class Coins
 {
 public:
+	Coins();
 	Coins(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY);
 	~Coins();
 
 	void SpawnCoin(SDL_Renderer *renderTarget);
 	void UpdateCoin(Coins &coin, Zombie & zombie, float delta, unsigned int lastTime, int currentTime);
+	int GetOriginX();
+	int GetOriginY();
+	int GetRadius();
+
 private:
 	SDL_Surface * surface = nullptr;
+	int originX;
+	int originY;
+	int radius;
 	float frameCounter;
 	bool isActive;
 	int textureWidth;

@@ -1,11 +1,9 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SDL TEST.vcxproj, Soldier Vs Zombies 2.2.vcxproj, Soldier Vs Zombies 2.9.vcxproj, Soldier Vs Zombies 3.0.vcxproj, Soldiers vs Zombies 1.9.vcxproj, Soldiers Vs Zombies 2.0.vcxproj, Soldiers Vs Zombies 2.2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Source.cpp
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(613): error C2065: 'coinObject': undeclared identifier
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(718): warning C4018: '>': signed/unsigned mismatch
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\source.cpp(113): warning C4390: ';': empty controlled statement found; is this the intent?
-  Coins.cpp
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\coins.cpp(59): warning C4018: '>': signed/unsigned mismatch
+  Collision.cpp
+c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\collision.cpp : fatal error C1041: cannot open program database 'C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\SDL\Debug\vc140.idb'; if multiple CL.EXE write to the same .PDB file, please use /FS
   Generating Code...
-  SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Debug\Soldier Vs Zombies 3.5.exe
-  SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Debug\Soldier Vs Zombies 3.5.pdb (Full PDB)

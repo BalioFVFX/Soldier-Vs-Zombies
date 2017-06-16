@@ -127,3 +127,20 @@ void Collision::PlayerToZombieCollision(Player & player, Zombie & zombie)
 	}
 }
 
+void Collision::PlayerToCoinsCollision(Player & player, Coins & coin)
+{
+	//If Infront The Zombie
+	if (sqrt(pow(player.GetOriginX() - coin.GetOriginX(), 2) + pow(player.GetOriginY() - coin.GetOriginY(), 2)) >= player.GetRadius() + coin.GetRadius() - 49)
+	{
+
+	}
+
+	else
+	{
+		SDL_SetTextureColorMod(player.texture, 252, 29, 29);
+	
+
+	}
+}
+
+

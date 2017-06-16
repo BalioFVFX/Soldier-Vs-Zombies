@@ -2,6 +2,10 @@
 
 
 
+Coins::Coins()
+{
+}
+
 Coins::Coins(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY)
 {
 
@@ -28,6 +32,10 @@ Coins::Coins(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int
 		frameWidth = positionRect.w = cropRect.w;
 		frameHeight = positionRect.h = cropRect.h;
 
+		originX = frameWidth / 2;
+		originY = frameHeight / 2;
+		radius = frameWidth / 2;
+
 		isActive = false;
 
 		moveSpeed = 200.0f;
@@ -36,6 +44,21 @@ Coins::Coins(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int
 
 Coins::~Coins()
 {
+}
+
+int Coins::GetOriginX()
+{
+	return originX = positionRect.x;
+}
+
+int Coins::GetOriginY()
+{
+	return originY = positionRect.y;
+}
+
+int Coins::GetRadius()
+{
+	return radius;
 }
 
 void Coins::SpawnCoin(SDL_Renderer * renderTarget)

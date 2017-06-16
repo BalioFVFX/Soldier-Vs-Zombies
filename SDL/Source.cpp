@@ -610,7 +610,7 @@ int main(int argc, char** argv)
 
 			collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
 			collision.PlayerToZombieCollision(player1, zombie1);
-
+			collision.PlayerToCoinsCollision(player1, coinsObject);
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
 			{
 				drawTheWall.drawWall(renderTarget, drawPosX, drawPosY);

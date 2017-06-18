@@ -598,7 +598,7 @@ int main(int argc, char** argv)
 				bullet.HandleInput(ammo, player1);
 			}
 
-		//	collision.PlayerBulletToZombieCollision(ammo, zombieArray);
+			collision.PlayerBulletToZombieCollision(ammo, zombieArray);
 
 			zombieText.ZombieUpdateText(renderTarget, text, zombie1);
 			playerText.PlayerUpdateText(renderTarget, text, player1);
@@ -614,12 +614,9 @@ int main(int argc, char** argv)
 
 	
 				
-		//	collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
+			//collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
 			collision.PlayerToZombieCollision(player1, zombieArray);
 		//	collision.PlayerToCoinsCollision(player1, coinsArray);
-			std::cout << player1.GetOriginX() << std::endl;
-			std::cout << player1.GetOriginY() << std::endl;
-			std::cout << player1.GetRadius() << std::endl;
 
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
 			{

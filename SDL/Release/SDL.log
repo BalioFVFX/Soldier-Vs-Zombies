@@ -2,9 +2,9 @@
   Collision.cpp
 c:\users\baliofvfx\documents\visual studio 2015\projects\soldier vs zombies\soldier-vs-zombies\sdl\Player.h(123): warning C4305: 'initializing': truncation from 'double' to 'float'
   Generating code
-  2 of 585 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  1 of 589 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Release\Soldier Vs Zombies 3.5.exe
   SDL.vcxproj -> C:\Users\BalioFVFX\Documents\Visual Studio 2015\Projects\Soldier Vs Zombies\Soldier-Vs-Zombies\Release\Soldier Vs Zombies 3.5.pdb (Full PDB)

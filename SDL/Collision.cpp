@@ -5,7 +5,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 {
 	if (zombie[0].alive == true)
 	{
-		if (sqrt(pow(bullet[0].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[0].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[0].GetRadius() + zombie[0].GetRadius())
+		if (sqrt(pow(bullet[0].GetOriginX() - 25- zombie[0].GetOriginX(), 2) + pow(bullet[0].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[0].GetRadius() + zombie[0].GetRadius() - 10)
 		{
 			//If any if returning false collision is not working?
 
@@ -21,7 +21,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 			zombie[0].hit = true;
 
 		}
-		if (sqrt(pow(bullet[1].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[1].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[1].GetRadius() + zombie[0].GetRadius())
+		if (sqrt(pow(bullet[1].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[1].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[1].GetRadius() + zombie[0].GetRadius() - 10)
 		{
 
 		}
@@ -35,7 +35,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 			zombie[0].hit = true;
 		}
 
-		if (sqrt(pow(bullet[2].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[2].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[2].GetRadius() + zombie[0].GetRadius())
+		if (sqrt(pow(bullet[2].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[2].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[2].GetRadius() + zombie[0].GetRadius() - 10)
 		{
 
 		}
@@ -49,7 +49,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 			zombie[0].hit = true;
 		}
 
-		if (sqrt(pow(bullet[3].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[3].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[3].GetRadius() + zombie[0].GetRadius())
+		if (sqrt(pow(bullet[3].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[3].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[3].GetRadius() + zombie[0].GetRadius() - 10)
 		{
 
 		}

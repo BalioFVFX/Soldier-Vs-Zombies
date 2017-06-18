@@ -9,12 +9,12 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 		{
 			//If any if returning false collision is not working?
 
-	//		SDL_SetTextureColorMod(zombie[0].texture, 255, 255, 255);
+		//	SDL_SetTextureColorMod(zombie[0].texture, 255, 255, 255);
 		}
 
 		else
 		{
-			SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
+		//	SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29); NOT WORKING
 			bullet[0].b.x = 9999;
 			bullet[0].alive = false;
 			zombie[0].health -= 10;
@@ -28,7 +28,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 
 		else
 		{
-			SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
+		//	SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
 			bullet[1].b.x = 9999;
 			bullet[1].alive = false;
 			zombie[0].health -= 10;
@@ -42,7 +42,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 
 		else
 		{
-			SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
+		//	SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
 			bullet[2].b.x = 9999;
 			bullet[2].alive = false;
 			zombie[0].health -= 10;
@@ -56,7 +56,7 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 
 		else
 		{
-			SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
+		//	SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
 			bullet[3].b.x = 9999;
 			bullet[3].alive = false;
 			zombie[0].health -= 10;
@@ -69,22 +69,23 @@ void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 	}
 }
 
-void Collision::ZombieBulletToPlayerCollision(Zombie & zombie, Player & player)
+void Collision::ZombieBulletToPlayerCollision(Zombie zombie[], Player & player)
 {
-	if (player.alive == true)
+	if (player.alive == true && zombie[0].alive == true)
 	{
 
-		if (sqrt(pow(zombie.GetBulletOriginX() - player.GetOriginX(), 2) + pow(zombie.GetBulletOriginY() - player.GetOriginY(), 2)) >= zombie.GetBulletRadius() + player.GetRadius())
+		if (sqrt(pow(zombie[0].GetBulletOriginX() - player.GetOriginX(), 2) + pow(zombie[0].GetBulletOriginY() - player.GetOriginY(), 2)) >= zombie[0].GetBulletRadius() + player.GetRadius())
 		{
-			SDL_SetTextureColorMod(player.texture, 255, 255, 255);
+
 		}
 
 		else
 		{
-			SDL_SetTextureColorMod(player.texture, 252, 29, 29);
-			zombie.zombieBulletRect.x = -700;
+			//SDL_SetTextureColorMod(player.texture, 252, 29, 29); // Not Working
+			zombie[0].zombieBulletRect.x = -700;
 			player.health -= 5;
-			player.hit = true;
+			player.hit = true; //For Text Updating
+		
 		}
 		if (player.health <= 0)
 		{

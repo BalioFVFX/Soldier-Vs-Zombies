@@ -1,6 +1,10 @@
 #pragma once
 #include <SDL\SDL.h>
 #include <SDL\SDL_image.h>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <string>
 #include "Player.h"
 #include "Zombie.h"
 
@@ -11,15 +15,21 @@ public:
 	Coins(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY);
 	~Coins();
 
+	void Init();
 	void SpawnCoin(SDL_Renderer *renderTarget, Coins coins[]);
-	void UpdateCoin(Coins coins[], Zombie & zombie, float delta, unsigned int lastTime, int currentTime);
+	void UpdateCoin(Coins coins[], Zombie zombie[], float delta, unsigned int lastTime, int currentTime);
 	int GetOriginX();
 	int GetOriginY();
 	int GetRadius();
 	bool alive = false;
-	SDL_Rect positionRect;
 	bool pickedUp = false;
-	int coinNumber[1000];
+	SDL_Rect positionRect;
+
+	std::fstream writeFile;
+	int line;
+	int coinsFromFille;
+
+
 private:
 	SDL_Surface * surface = nullptr;
 	int originX;

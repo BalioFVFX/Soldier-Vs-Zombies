@@ -124,6 +124,7 @@ int main(int argc, char** argv)
 
 	//Zombie Overall:
 	Zombie zombie1(renderTarget, "zombie1.png", 600, 400, 4, 4);
+	Zombie zombieArray[1];
 	Zombie zombieBullet(renderTarget, "zombiebullet.png", 0, 0, 1, 1);
 	Zombie zombie2(renderTarget, "zombie2.png", 600, 400, 4, 4);
 	Zombie zombie3(renderTarget, "zombie3.png", 600, 400, 4, 4);
@@ -134,8 +135,8 @@ int main(int argc, char** argv)
 	Player explosionFromZombie(renderTarget, "explosion.gif", 0, 0, 1, 1);
 
 	Coins coinsObject(renderTarget, "coins.png", 300, 300, 9, 4);
-	Coins coinsArray[20];
-	
+	Coins coinsArray[1];
+	coinsObject.Init();
 	Collision collision;
 	//Collision collision2;
 	
@@ -245,6 +246,7 @@ int main(int argc, char** argv)
 	SDL_Surface* nocoincsSurface = TTF_RenderText_Solid(text, "Not enough coins!", White);
 	SDL_Texture* nocoinsTexture = SDL_CreateTextureFromSurface(renderTarget, nocoincsSurface);
 
+	zombie1.Init(zombieArray);
 
 	while (isRunning)
 	{
@@ -585,7 +587,6 @@ int main(int argc, char** argv)
 			enviroment.drawEnviroment(renderTarget);
 
 			player1.Draw(renderTarget);  //Draw first player
-			zombie1.Draw(renderTarget);
 			zombieText.ZombieTextDraw(renderTarget, text);
 			playerText.PlayerTextDraw(renderTarget, text);
 
@@ -597,21 +598,29 @@ int main(int argc, char** argv)
 				bullet.HandleInput(ammo, player1);
 			}
 
-			collision.PlayerBulletToZombieCollision(ammo, zombie1);
+		//	collision.PlayerBulletToZombieCollision(ammo, zombieArray);
 
 			zombieText.ZombieUpdateText(renderTarget, text, zombie1);
 			playerText.PlayerUpdateText(renderTarget, text, player1);
-			zombieBullet.Attack(renderTarget, zombie1);
+			//zombieBullet.Attack(renderTarget, zombieArray);
+			
 		
 			bullet.Draw(renderTarget, ammo, player1);
 			
 			coinsObject.SpawnCoin(renderTarget, coinsArray);
-	
-			coinsObject.UpdateCoin(coinsArray, zombie1, delta, lastTime, currentTime);
+			zombie1.Draw(renderTarget, zombieArray);
+			zombie1.Update(zombieArray, delta, lastTime, currentTime);
+			coinsObject.UpdateCoin(coinsArray, zombieArray, delta, lastTime, currentTime);
 
-			collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
-			collision.PlayerToZombieCollision(player1, zombie1);
-			collision.PlayerToCoinsCollision(player1, coinsArray);
+	
+				
+		//	collision.ZombieBulletToPlayerCollision(zombieBullet, player1);
+			collision.PlayerToZombieCollision(player1, zombieArray);
+		//	collision.PlayerToCoinsCollision(player1, coinsArray);
+			std::cout << player1.GetOriginX() << std::endl;
+			std::cout << player1.GetOriginY() << std::endl;
+			std::cout << player1.GetRadius() << std::endl;
+
 			if (timesWereHitted <= 3 && bricksAlive1st == true)
 			{
 				drawTheWall.drawWall(renderTarget, drawPosX, drawPosY);
@@ -650,14 +659,14 @@ int main(int argc, char** argv)
 
 			if (spawn2ndZombie && isPaused == false)
 			{
-				zombie2.Draw(renderTarget);
+			//	zombie2.Draw(renderTarget, zombieArray);
 				//zombie2nd.Draw(renderTarget);
 				//zombieDrawBullet.DrawBullet4Zombie(renderTarget, zombie2nd, keyState);
 			}
 
 			if (spawn3rdZombie && isPaused == false)
 			{
-				zombie3.Draw(renderTarget);
+				//zombie3.Draw(renderTarget, zombieArray);
 				//zombie3rd.Draw(renderTarget);
 				//zombieDrawBulletVer2.DrawBullet4ZombieVer2(renderTarget, zombie3rd, keyState);
 			}
@@ -693,7 +702,7 @@ int main(int argc, char** argv)
 				player1.Update(delta, keyState, ev);
 				if (regularZombieUpdate == true)
 				{
-					zombie1.Update(zombie1, delta, lastTime, currentTime);
+		
 				
 					if (spawn2ndZombie == true)
 					{

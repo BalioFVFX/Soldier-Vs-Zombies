@@ -14,8 +14,8 @@ public:
 	int a = 20;
 	Collision() : Player(), Zombie(), Bullet(), Coins() {};
 
-	void PlayerBulletToZombieCollision(Bullet bullet[], Zombie &zombie);
+	void PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[]);
 	void ZombieBulletToPlayerCollision(Zombie &zombie, Player & player);
-	void PlayerToZombieCollision(Player & player, Zombie & zombie);
+	void PlayerToZombieCollision(Player & player, Zombie zombie[]);
 	void PlayerToCoinsCollision(Player &player, Coins coin[]);
 };

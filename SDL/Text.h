@@ -18,6 +18,9 @@ public:
 	void PlayerTextDraw(SDL_Renderer * renderTarget, TTF_Font *text);
 	void PlayerUpdateText(SDL_Renderer * renderTarget, TTF_Font *text, Player &player);
 
+	void CoinsTextDraw(SDL_Renderer * renderTarget, TTF_Font *text);
+	void CoinsUpdateText(SDL_Renderer *renderTarget, TTF_Font *text);
+
 private:
 	TTF_Font * text;
 	SDL_Renderer * renderTarget;
@@ -44,5 +47,15 @@ private:
 
 	std::stringstream playerHealthSTREAM; //So we can convert INTEGER to STRING
 
+	//Coins Stuff
+
+	SDL_Rect coinsRect;
+	SDL_Rect coinsTextRect;
+
+	SDL_Surface* CoinsTextSurface;
+	SDL_Texture* CoinsTextTexture;
+
+	SDL_Surface * CoinsSurface;
+	SDL_Texture * CoinsTexture;
 };
 

@@ -1,7 +1,7 @@
 #include "Coins.h"
 #define Coins_NO 1000
 
-
+using namespace std;
 Coins::Coins()
 {
 }
@@ -61,6 +61,22 @@ int Coins::GetRadius()
 	return radius;
 }
 
+void Coins::Init()
+{
+
+	ifstream myfile("coins.txt");
+	
+
+	if (myfile.is_open())
+	{
+		while (myfile >> line)
+		{
+		}
+		myfile.close();
+	}
+	coinsFromFille = line;
+}
+
 void Coins::SpawnCoin(SDL_Renderer * renderTarget, Coins coins[])
 {
 	
@@ -72,23 +88,31 @@ void Coins::SpawnCoin(SDL_Renderer * renderTarget, Coins coins[])
 
 }
 
-void Coins::UpdateCoin(Coins coins[], Zombie &zombie, float delta, unsigned int lastTime, int currentTime)
+void Coins::UpdateCoin(Coins coins[], Zombie zombie[], float delta, unsigned int lastTime, int currentTime)
 {
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 1; i++)
 	{
-		if (zombie.alive == false)
+		if (zombie[0].alive == false)
+		{
 			if (coins[i].pickedUp == false)
 			{
 				coins[i].alive = true;
-				coins[i].positionRect.x = zombie.zombieRect.x;
-				coins[i].positionRect.y = zombie.zombieRect.y;
+				coins[i].positionRect.x = zombie[i].zombieRect.x;
+				coins[i].positionRect.y = zombie[i].zombieRect.y;
 				coins[i].positionRect.w = 59;
 				coins[i].positionRect.h = 59;
 				break;
 			}
-		if (coins[i].pickedUp == true)
-		{
-			coins[i].alive = false;
+			if (coins[i].pickedUp == true)
+			{
+				coins[i].alive = false;
+				writeFile.clear();
+				writeFile.open("coins.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+				coinsFromFille += 200;
+				writeFile << coinsFromFille;
+				writeFile << "\n";
+				writeFile.close();
+			}
 		}
 	}
 	

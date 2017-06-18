@@ -91,3 +91,12 @@ void Text::PlayerUpdateText(SDL_Renderer * renderTarget, TTF_Font * text, Player
 		//}
 	}
 }
+
+void Text::CoinsTextDraw(SDL_Renderer * renderTarget, TTF_Font * text)
+{
+
+}
+
+void Text::CoinsUpdateText(SDL_Renderer * renderTarget, TTF_Font * text)
+{
+}

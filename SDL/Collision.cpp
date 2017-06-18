@@ -1,70 +1,70 @@
 #include "Collision.h"
 #include  <cmath>
 
-void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie & zombie)
+void Collision::PlayerBulletToZombieCollision(Bullet bullet[], Zombie zombie[])
 {
-	if (zombie.alive == true)
+	if (zombie[0].alive == true)
 	{
-		if (sqrt(pow(bullet[0].GetOriginX() - 25 - zombie.GetOriginX(), 2) + pow(bullet[0].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[0].GetRadius() + zombie.GetRadius())
+		if (sqrt(pow(bullet[0].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[0].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[0].GetRadius() + zombie[0].GetRadius())
 		{
 			//If any if returning false collision is not working?
 
-			SDL_SetTextureColorMod(zombie.texture, 255, 255, 255);
+	//		SDL_SetTextureColorMod(zombie[0].texture, 255, 255, 255);
 		}
 
 		else
 		{
-			SDL_SetTextureColorMod(zombie.texture, 252, 29, 29);
+			SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
 			bullet[0].b.x = 9999;
 			bullet[0].alive = false;
-			zombie.health -= 10;
-			zombie.hit = true;
+			zombie[0].health -= 10;
+			zombie[0].hit = true;
 
 		}
-		if (sqrt(pow(bullet[1].GetOriginX() - 25 - zombie.GetOriginX(), 2) + pow(bullet[1].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[1].GetRadius() + zombie.GetRadius())
+		if (sqrt(pow(bullet[1].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[1].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[1].GetRadius() + zombie[0].GetRadius())
 		{
 
 		}
 
 		else
 		{
-			SDL_SetTextureColorMod(zombie.texture, 252, 29, 29);
+			SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
 			bullet[1].b.x = 9999;
 			bullet[1].alive = false;
-			zombie.health -= 10;
-			zombie.hit = true;
+			zombie[0].health -= 10;
+			zombie[0].hit = true;
 		}
 
-		if (sqrt(pow(bullet[2].GetOriginX() - 25 - zombie.GetOriginX(), 2) + pow(bullet[2].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[2].GetRadius() + zombie.GetRadius())
+		if (sqrt(pow(bullet[2].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[2].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[2].GetRadius() + zombie[0].GetRadius())
 		{
 
 		}
 
 		else
 		{
-			SDL_SetTextureColorMod(zombie.texture, 252, 29, 29);
+			SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
 			bullet[2].b.x = 9999;
 			bullet[2].alive = false;
-			zombie.health -= 10;
-			zombie.hit = true;
+			zombie[0].health -= 10;
+			zombie[0].hit = true;
 		}
 
-		if (sqrt(pow(bullet[3].GetOriginX() - 25 - zombie.GetOriginX(), 2) + pow(bullet[3].GetOriginY() - zombie.GetOriginY(), 2)) >= bullet[3].GetRadius() + zombie.GetRadius())
+		if (sqrt(pow(bullet[3].GetOriginX() - 25 - zombie[0].GetOriginX(), 2) + pow(bullet[3].GetOriginY() - zombie[0].GetOriginY(), 2)) >= bullet[3].GetRadius() + zombie[0].GetRadius())
 		{
 
 		}
 
 		else
 		{
-			SDL_SetTextureColorMod(zombie.texture, 252, 29, 29);
+			SDL_SetTextureColorMod(zombie[0].texture, 252, 29, 29);
 			bullet[3].b.x = 9999;
 			bullet[3].alive = false;
-			zombie.health -= 10;
-			zombie.hit = true;
+			zombie[0].health -= 10;
+			zombie[0].hit = true;
 		}
-		if (zombie.health <= 0)
+		if (zombie[0].health <= 0)
 		{
-			zombie.alive = false;
+			zombie[0].alive = false;
 		}
 	}
 }
@@ -93,15 +93,15 @@ void Collision::ZombieBulletToPlayerCollision(Zombie & zombie, Player & player)
 	}
 }
 
-void Collision::PlayerToZombieCollision(Player & player, Zombie & zombie)
+void Collision::PlayerToZombieCollision(Player & player, Zombie zombie[])
 {
-	if (zombie.alive == true)
+	if (zombie[0].alive == true)
 	{
 		
 		//If Infront The Zombie
-		if (sqrt(pow(player.GetOriginX() - zombie.GetOriginX(), 2) + pow(player.GetOriginY() - zombie.GetOriginY(), 2)) >= player.GetRadius() + zombie.GetRadius())
+		if (sqrt(pow(player.GetOriginX() - zombie[0].GetOriginX(), 2) + pow(player.GetOriginY() - zombie[0].GetOriginY(), 2)) >= player.GetRadius() + zombie[0].GetRadius() - 49)
 		{
-
+			SDL_SetTextureColorMod(player.texture, 255, 255, 255);
 		}
 
 		else
@@ -111,10 +111,10 @@ void Collision::PlayerToZombieCollision(Player & player, Zombie & zombie)
 
 		}
 
-		//If Behind The Zombie
-		if (sqrt(pow(player.GetOriginX() - 3 - zombie.GetOriginX(), 2) + pow(player.GetOriginY() - zombie.GetOriginY(), 2)) >= player.GetRadius() + zombie.GetRadius())
+	
+		if (sqrt(pow(player.GetOriginX() - 9 - zombie[0].GetOriginX(), 2) + pow(player.GetOriginY() - zombie[0].GetOriginY(), 2)) >= player.GetRadius() + zombie[0].GetRadius() - 49)
 		{
-
+			
 		}
 
 		else
@@ -123,8 +123,9 @@ void Collision::PlayerToZombieCollision(Player & player, Zombie & zombie)
 			player.positionRect.x += 5;
 
 		}
-
+		
 	}
+	
 }
 
 void Collision::PlayerToCoinsCollision(Player & player, Coins coin[])
@@ -143,7 +144,6 @@ void Collision::PlayerToCoinsCollision(Player & player, Coins coin[])
 			SDL_SetTextureColorMod(player.texture, 252, 29, 29);
 			player.positionRect.x = 200;
 			coin[0].pickedUp = true;
-
 		}
 	}
 }

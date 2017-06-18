@@ -11,9 +11,10 @@ public:
 	Zombie();
 	Zombie(SDL_Renderer *renderTarget, std::string filePath, int x, int y, int framesX, int framesY);
 	~Zombie();
-	void Draw(SDL_Renderer * renderTarget);
-	void Update(Zombie & zombie, float delta, unsigned int lastTime, int currentTime);
-	void Attack(SDL_Renderer * renderTarget, Zombie & zombie);
+	void Draw(SDL_Renderer * renderTarget, Zombie zombie[]);
+	void Update(Zombie  zombie[], float delta, unsigned int lastTime, int currentTime);
+	void Attack(SDL_Renderer * renderTarget, Zombie  zombie[]);
+	void Init(Zombie zombie[]);
 	SDL_Rect zombieRect;
 	int GetOriginX();
 	int GetOriginY();

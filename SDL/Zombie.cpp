@@ -19,8 +19,8 @@ Zombie::Zombie(SDL_Renderer *renderTarget, std::string filePath, int x, int y, i
 		SDL_QueryTexture(texture, NULL, NULL, &cropRect.w, &cropRect.h);
 
 
-		zombieRect.x = x;
-		zombieRect.y = y;
+		this->zombieRect.x = x;
+		this->zombieRect.y = y;
 
 
 		zombieBulletRect.x = zombieRect.x;
@@ -68,99 +68,106 @@ Zombie::Zombie()
 }
 
 
-void Zombie::Draw(SDL_Renderer *renderTarget)
+void Zombie::Draw(SDL_Renderer *renderTarget, Zombie zombie[])
 {
-	if (alive == false)
-	{
 
-	}
-	else
+	if (zombie[0].alive == true)
 	{
-		SDL_RenderCopy(renderTarget, texture, &cropRect, &zombieRect);
+		SDL_RenderCopy(renderTarget, texture, &cropRect, &zombie[0].zombieRect);
 	}
 }
 
-void Zombie::Update(Zombie & zombie, float delta, unsigned int lastTime, int currentTime)
+void Zombie::Update(Zombie zombie[], float delta, unsigned int lastTime, int currentTime)
 {
-	if (alive == true)
-	{
 	isActive = true;
 	moveSpeed = 1;
-	
-		if (currentTime > lastTime)
-		{
-
-			lastTime = currentTime;
-
-			if (moving == true)
+			if (currentTime > lastTime)
 			{
-				cropRect.y = frameHeight;
-				zombie.zombieRect.x -= moveSpeed * delta;
 
+				lastTime = currentTime;
+
+				if (moving == true)
+				{
+					cropRect.y = frameHeight;
+					zombie[0].zombieRect.x -= moveSpeed * delta;
+
+				}
 			}
 			else
 			{
 				isActive = false;
 			}
-		}
-
-		if (isActive)
-		{
-			frameCounter += delta;
-
-			if (frameCounter >= 0.25f)
+			if (isActive)
 			{
-				frameCounter = 0;
-				cropRect.x += frameWidth;
-				if (cropRect.x >= textureWidth)
+				frameCounter += delta;
+
+				if (frameCounter >= 0.25f)
 				{
-					cropRect.x = 0;
+					frameCounter = 0;
+					cropRect.x += frameWidth;
+					if (cropRect.x >= textureWidth)
+					{
+						cropRect.x = 0;
+					}
 				}
 			}
-		}
-		else
+			else
+			{
+				frameCounter = 0;
+				cropRect.x = frameWidth;
+			}
+
+}
+
+void Zombie::Attack(SDL_Renderer * renderTarget, Zombie zombie[])
+{
+	for (int i = 0; i < 10; i++)
+	{
+
+
+		if (zombie[i].alive == true)
 		{
-			frameCounter = 0;
-			cropRect.x = frameWidth;
+			currentTime = SDL_GetTicks();
+
+			if (currentTime > lastTime + 0)
+			{
+				lastTime = currentTime;
+				zombie[i].zombieBulletRect.x -= 10;
+			}
+			if (zombie[i].zombieBulletRect.x <= -752)
+			{
+				zombie[i].zombieBulletRect.x = zombie[i].zombieRect.x;
+				zombie[i].zombieBulletRect.y = zombie[i].zombieRect.y + 20;
+			}
+
+			SDL_RenderCopy(renderTarget, texture, NULL, &zombie[i].zombieBulletRect);
 		}
+		break;
 	}
 }
 
-void Zombie::Attack(SDL_Renderer * renderTarget, Zombie & zombie)
+void Zombie::Init(Zombie zombie[])
 {
-	if (zombie.alive == true)
-	{
-		currentTime = SDL_GetTicks();
-
-		if (currentTime > lastTime + 0)
-		{
-			lastTime = currentTime;
-			zombieBulletRect.x -= 10;
-		}
-		if (zombieBulletRect.x <= -752)
-		{
-			zombieBulletRect.x = zombie.zombieRect.x;
-			zombieBulletRect.y = zombie.zombieRect.y + 20;
-		}
-
-		SDL_RenderCopy(renderTarget, texture, NULL, &zombieBulletRect);
-	}
+	zombie[0].zombieRect.w = 70;
+	zombie[0].zombieRect.h = 70;
+	zombie[0].zombieRect.x = 500;
+	zombie[0].zombieRect.y = 400;
 }
 
 
 int Zombie::GetOriginX()
 {
-	return zombieRect.x + originX;
+	return originX = zombieRect.x;
 }
 
 int Zombie::GetOriginY()
 {
-	return zombieRect.y + originY;
+	return originY = zombieRect.y;
 }
 
 int Zombie::GetRadius()
 {
-	return radius;
+	return radius = 32;
 }
 
 int Zombie::GetBulletOriginX()

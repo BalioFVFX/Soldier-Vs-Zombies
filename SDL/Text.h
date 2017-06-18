@@ -14,7 +14,7 @@ public:
 	~Text();
 	SDL_Color White = { 255, 255, 255 };
 	void ZombieTextDraw(SDL_Renderer * renderTarget, TTF_Font *text);
-	void ZombieUpdateText(SDL_Renderer * renderTarget, TTF_Font * text, Zombie & zombie);
+	void ZombieUpdateText(SDL_Renderer * renderTarget, TTF_Font * text, Zombie zombie[]);
 	void PlayerTextDraw(SDL_Renderer * renderTarget, TTF_Font *text);
 	void PlayerUpdateText(SDL_Renderer * renderTarget, TTF_Font *text, Player &player);
 

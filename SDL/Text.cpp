@@ -54,18 +54,18 @@ void Text::ZombieTextDraw(SDL_Renderer * renderTarget, TTF_Font * text)
 	SDL_RenderCopy(renderTarget, ZombieHealthTexture, NULL, &zombieHealthRect);
 }
 
-void Text::ZombieUpdateText(SDL_Renderer * renderTarget, TTF_Font * text, Zombie &zombie)
+void Text::ZombieUpdateText(SDL_Renderer * renderTarget, TTF_Font * text, Zombie zombie[])
 {
-	if (zombie.hit == true)
+	if (zombie[0].hit == true)
 	{
 		//if (zombie.alive == true) If Zombie Gets Killed HP Is Staying At 10
 		//{
 			zombieHealthSTREAM.str("");
-			zombieHealthSTREAM << zombie.health;
+			zombieHealthSTREAM << zombie[0].health;
 
 			ZombieHealthSurface = TTF_RenderText_Solid(text, zombieHealthSTREAM.str().c_str(), White);
 			ZombieHealthTexture = SDL_CreateTextureFromSurface(renderTarget, ZombieHealthSurface);
-			zombie.hit = false;
+			zombie[0].hit = false;
 		//}
 	}
 }

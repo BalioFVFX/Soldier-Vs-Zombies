@@ -600,7 +600,7 @@ int main(int argc, char** argv)
 
 			collision.PlayerBulletToZombieCollision(ammo, zombieArray);
 
-			zombieText.ZombieUpdateText(renderTarget, text, zombie1);
+			zombieText.ZombieUpdateText(renderTarget, text, zombieArray);
 			playerText.PlayerUpdateText(renderTarget, text, player1);
 			zombieBullet.Attack(renderTarget, zombieArray);
 			
@@ -612,7 +612,7 @@ int main(int argc, char** argv)
 			zombie1.Update(zombieArray, delta, lastTime, currentTime);
 			coinsObject.UpdateCoin(coinsArray, zombieArray, delta, lastTime, currentTime);
 
-			;
+			
 	
 				
 			collision.ZombieBulletToPlayerCollision(zombieArray, player1);
